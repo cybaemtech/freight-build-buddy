@@ -21,17 +21,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CRATED — Packaging & Freight RFQ Builder | Cybaem Tech" },
+      { title: "RFQ — Packaging & Freight RFQ Builder | VEVRA PACKAGING" },
       {
         name: "description",
         content:
-          "Build a packaging and freight RFQ in minutes: size the right carton, set protection, choose transport mode and carrier, and send it to Cybaem Tech.",
+          "Build a packaging and freight RFQ in minutes: size the right carton, set protection, choose transport mode and carrier, and send it to VEVRA PACKAGING.",
       },
-      { property: "og:title", content: "CRATED — Packaging & Freight RFQ Builder" },
+      { property: "og:title", content: "RFQ — Packaging & Freight RFQ Builder" },
       {
         property: "og:description",
         content:
-          "Carton sizing, protection levels, freight mode and carrier preference — one guided RFQ for Cybaem Tech.",
+          "Carton sizing, protection levels, freight mode and carrier preference — one guided RFQ for VEVRA PACKAGING.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -141,8 +141,8 @@ function RFQBuilder() {
     <div className="rfq-page">
       <div className="wrap">
         <header className="brand">
-          <div className="mark">CRATED</div>
-          <div className="tag">Packaging &amp; Freight RFQ Builder — Cybaem Tech</div>
+          <div className="mark">Request For Quotation [RFQ]</div>
+          <div className="tag">PACKAGING & FREIGHT RFQ BUILDER — VEVRA PACKAGING</div>
         </header>
 
         <div className="rail">
