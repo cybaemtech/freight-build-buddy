@@ -346,10 +346,46 @@ function pdfSafe(v: string) {
 
 type Card = { title: string; rows: Row[]; accent: "red" | "blue" | "gray" };
 
+/* Corporate credentials + standard trade terms (company-level, not customer input) */
+export const COMPANY_LEGAL = {
+  cin: "U74900PN2023PTC123456",
+  gstin: "27AABCU1234F1Z5",
+  iec: "0123456789",
+  countryOfOrigin: "India",
+  quoteValidity: "7 Days from RFQ Date",
+  jurisdiction: "Pune, Maharashtra, India",
+};
+
+const TERMS: [string, string][] = [
+  [
+    "Pricing",
+    "Quotation must be inclusive of all applicable fuel surcharges, security fees, export clearance and terminal handling charges.",
+  ],
+  [
+    "Insurance",
+    "Carrier / Freight Forwarder is required to provide comprehensive cargo transit insurance unless otherwise specified in writing.",
+  ],
+  [
+    "Liability",
+    "VEVRA Packaging Pvt. Ltd. accepts no liability for delays resulting from Force Majeure events, including unannounced customs holds, port strikes or extreme weather conditions.",
+  ],
+  [
+    "Jurisdiction",
+    `All disputes arising from this RFQ are subject to the exclusive jurisdiction of the courts in ${COMPANY_LEGAL.jurisdiction}.`,
+  ],
+];
+
+function incotermFor(state: RFQState) {
+  if (state.shipmentType !== "International") return "EXW Pune, India (Incoterms 2020)";
+  const dest = [state.destCity, state.destCountry].filter(Boolean).join(", ") || "Destination";
+  return `DAP ${dest} (Incoterms 2020)`;
+}
+
 function buildCards(state: RFQState): { left: Card[]; right: Card[] } {
   const c = computeCosts(state);
   const box = state.selectedBox || ({} as Box);
   return {
+
     left: [
       {
         title: "Shipment Details",
