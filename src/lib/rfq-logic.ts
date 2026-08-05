@@ -484,15 +484,8 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   doc.setLineWidth(0.8);
   doc.line(M, y, PW - M, y);
 
-  y += 13;
-  doc.setFontSize(8);
-  doc.setTextColor(...LABEL);
-  doc.text(
-    "Contact: +91 8484853484  |  info@vevrapackaging.com  |  Mon - Sat: 10:00am - 7:00pm",
-    PW / 2,
-    y,
-    { align: "center" },
-  );
+  y += 4;
+
 
   /* ---------- Cards ---------- */
   const GAP = 16;
@@ -561,17 +554,79 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     ry2 += drawCard(c, M + colW + GAP, ry2) + GAP;
   });
 
-  /* ---------- Footer ---------- */
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(10);
-  doc.setTextColor(...RED);
-  const mark = "VEVRA";
-  const mw = doc.getTextWidth(mark);
-  doc.text(mark, PW / 2 - mw / 2, PH - 22);
+  /* ---------- Footer (full-width red block) ---------- */
+  const FH = 104;
+  const fy = PH - FH;
   doc.setFillColor(...RED);
-  doc.rect(0, PH - 4, PW / 2, 4, "F");
+  doc.rect(0, fy, PW, FH, "F");
+  /* blue accent line on top edge of the footer */
   doc.setFillColor(...BLUE);
-  doc.rect(PW / 2, PH - 4, PW / 2, 4, "F");
+  doc.rect(0, fy, PW, 3, "F");
+
+  /* --- top row: logo | contact | timings --- */
+  const rowTop = fy + 16;
+  if (logo) {
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(M - 5, rowTop - 3, 106, 42, 4, 4, "F");
+    doc.addImage(logo, "PNG", M, rowTop + 1, 96, 34);
+  } else {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(13);
+    doc.setTextColor(255, 255, 255);
+    doc.text("VEVRA", M, rowTop + 20);
+  }
+
+  const colX = M + 128;
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(7.5);
+  doc.setTextColor(255, 214, 214);
+  doc.text("CONTACT", colX, rowTop + 8);
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text("+91 8484853484", colX, rowTop + 21);
+  doc.text("info@vevrapackaging.com", colX, rowTop + 33);
+
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(7.5);
+  doc.setTextColor(255, 214, 214);
+  doc.text("OUR TIMINGS", PW - M, rowTop + 8, { align: "right" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text("Mon - Sat", PW - M, rowTop + 21, { align: "right" });
+  doc.text("10:00am - 7:00pm", PW - M, rowTop + 33, { align: "right" });
+
+  /* --- divider --- */
+  doc.setDrawColor(222, 120, 124);
+  doc.setLineWidth(0.6);
+  doc.line(M, fy + 63, PW - M, fy + 63);
+
+  /* --- products row --- */
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(7.5);
+  doc.setTextColor(255, 214, 214);
+  doc.text("OUR PRODUCTS", PW / 2, fy + 76, { align: "center" });
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8);
+  doc.setTextColor(255, 255, 255);
+  doc.text(
+    "Corrugation  |  Blister  |  Plastic Parts  |  Metal Trollies  |  Racking System  |  Plywood  |  E-Carts",
+    PW / 2,
+    fy + 87,
+    { align: "center" },
+  );
+
+  /* --- copyright --- */
+  doc.setFontSize(7.5);
+  doc.setTextColor(255, 228, 228);
+  doc.text(
+    "\u00A9 2026 Vevra Packaging Pvt. Ltd. All Rights Reserved.",
+    PW / 2,
+    fy + 98,
+    { align: "center" },
+  );
+
 
   return doc;
 }
