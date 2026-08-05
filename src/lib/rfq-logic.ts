@@ -495,11 +495,11 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   );
 
   /* ---------- Cards ---------- */
-  const GAP = 14;
+  const GAP = 16;
   const colW = (PW - M * 2 - GAP) / 2;
-  const HDR_H = 17;
-  const ROW_H = 14;
-  const PAD = 9;
+  const HDR_H = 19;
+  const ROW_H = 18;
+  const PAD = 11;
 
   const drawCard = (card: Card, x: number, top: number) => {
     const valW = colW - PAD * 2 - 96;
@@ -507,7 +507,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
       l,
       lines: doc.splitTextToSize(pdfSafe(v), valW) as string[],
     }));
-    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 9.5 + 5), 0) + 6;
+    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 11 + 7), 0) + 6;
     const h = HDR_H + bodyH;
 
     /* shadow + card */
@@ -524,25 +524,25 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     doc.setFillColor(255, 255, 255);
     doc.rect(x, top + HDR_H, colW, 5, "F");
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(8);
+    doc.setFontSize(8.5);
     doc.setTextColor(255, 255, 255);
-    doc.text(card.title.toUpperCase(), x + PAD, top + 11.5);
+    doc.text(card.title.toUpperCase(), x + PAD, top + 12.5);
 
-    let ry = top + HDR_H + 12;
+    let ry = top + HDR_H + 15;
     wrapped.forEach((r, i) => {
-      const rh = Math.max(ROW_H, r.lines.length * 9.5 + 5);
+      const rh = Math.max(ROW_H, r.lines.length * 11 + 7);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(7.5);
+      doc.setFontSize(8);
       doc.setTextColor(...LABEL);
       doc.text(pdfSafe(r.l).toUpperCase(), x + PAD, ry);
       doc.setFont("helvetica", "normal");
-      doc.setFontSize(8);
+      doc.setFontSize(8.5);
       doc.setTextColor(...INK);
       doc.text(r.lines, x + colW - PAD, ry, { align: "right" });
       if (i < wrapped.length - 1) {
         doc.setDrawColor(...LINE);
         doc.setLineWidth(0.5);
-        doc.line(x + PAD, ry + rh - 9, x + colW - PAD, ry + rh - 9);
+        doc.line(x + PAD, ry + rh - 11, x + colW - PAD, ry + rh - 11);
       }
       ry += rh;
     });
