@@ -442,49 +442,67 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
   const logo = await loadLogo();
 
-  /* ---------- Header ---------- */
-  let y = M;
-  if (logo) {
-    doc.addImage(logo, "PNG", M, y - 2, 96, 37);
-  }
-  const nameX = M + (logo ? 108 : 0);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(14);
-  doc.setTextColor(...RED);
-  doc.text("VEVRA", nameX, y + 14);
-  const w1 = doc.getTextWidth("VEVRA ");
-  doc.setTextColor(...BLUE);
-  doc.text("PACKAGING PVT. LTD.", nameX + w1, y + 14);
-  doc.setFont("helvetica", "italic");
-  doc.setFontSize(8.5);
-  doc.setTextColor(...LABEL);
-  doc.text("Empowering Packaging", nameX, y + 28);
+  /* ---------- Header (full-width red block) ---------- */
+  const HH = 116;
+  doc.setFillColor(...RED);
+  doc.rect(0, 0, PW, HH, "F");
+  doc.setFillColor(...BLUE);
+  doc.rect(0, HH - 3, PW, 3, "F");
 
-  y += 58;
+  if (logo) {
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(M - 5, 14, 106, 42, 4, 4, "F");
+    doc.addImage(logo, "PNG", M, 18, 96, 34);
+  }
+
+  /* centered company name + tagline */
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(13);
-  doc.setTextColor(...INK);
-  doc.text("Packaging & Freight RFQ", M, y);
+  doc.setFontSize(19);
+  doc.setTextColor(255, 255, 255);
+  doc.text("VEVRA PACKAGING PVT. LTD.", PW / 2, 34, { align: "center" });
+  doc.setFont("helvetica", "italic");
+  doc.setFontSize(9.5);
+  doc.setTextColor(255, 222, 222);
+  doc.text("Empowering Packaging", PW / 2, 47, { align: "center" });
+
+  /* divider inside header */
+  doc.setDrawColor(226, 128, 132);
+  doc.setLineWidth(0.6);
+  doc.line(M, 62, PW - M, 62);
+
+  /* doc name (left) + RFQ number / date (right) */
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(12);
+  doc.setTextColor(255, 255, 255);
+  doc.text("Packaging & Freight RFQ", M, 80);
+
   doc.setFont("courier", "bold");
-  doc.setFontSize(10);
-  doc.setTextColor(...RED);
-  doc.text(pdfSafe(rfqNumber), PW - M, y - 5, { align: "right" });
+  doc.setFontSize(10.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text(pdfSafe(rfqNumber), PW - M, 76, { align: "right" });
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
-  doc.setTextColor(...LABEL);
+  doc.setTextColor(255, 222, 222);
   doc.text(
     new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }),
     PW - M,
-    y + 7,
+    88,
     { align: "right" },
   );
 
-  y += 14;
-  doc.setDrawColor(...LINE);
-  doc.setLineWidth(0.8);
-  doc.line(M, y, PW - M, y);
+  /* ---------- Contact line (below header, blue bold) ---------- */
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(9);
+  doc.setTextColor(...BLUE);
+  doc.text(
+    "Contact: +91 8484853484  |  info@vevrapackaging.com  |  Mon-Sat: 10:00am - 7:00pm",
+    PW / 2,
+    HH + 20,
+    { align: "center" },
+  );
 
-  y += 4;
+  let y = HH + 26;
+
 
 
   /* ---------- Cards ---------- */
