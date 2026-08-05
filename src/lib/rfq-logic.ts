@@ -484,15 +484,8 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   doc.setLineWidth(0.8);
   doc.line(M, y, PW - M, y);
 
-  y += 13;
-  doc.setFontSize(8);
-  doc.setTextColor(...LABEL);
-  doc.text(
-    "Contact: +91 8484853484  |  info@vevrapackaging.com  |  Mon - Sat: 10:00am - 7:00pm",
-    PW / 2,
-    y,
-    { align: "center" },
-  );
+  y += 4;
+
 
   /* ---------- Cards ---------- */
   const GAP = 16;
