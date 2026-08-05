@@ -1,7 +1,7 @@
-/* ============ CONFIG — Cybaem Tech ============ */
+/* ============ CONFIG — VEVRA PACKAGING ============ */
 export const CONFIG = {
-  companyName: "Cybaem Tech Pvt. Ltd.",
-  salesEmail: "enquiry@cybaemtech.com",
+  companyName: "VEVRA PACKAGING",
+  salesEmail: "enquiry@vevrapackaging.com",
   emailjs: {
     enabled: false,
     publicKey: "YOUR_EMAILJS_PUBLIC_KEY",
@@ -316,7 +316,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
-  doc.text("CRATED — Packaging & Freight RFQ", marginX, y);
+  doc.text("Packaging & Freight RFQ", marginX, y);
   y += 22;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
