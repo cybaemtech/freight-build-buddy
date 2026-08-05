@@ -711,10 +711,8 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   });
 
   /* ---------- Footer (full-width red block) ---------- */
-
   const fy = PH - FH;
 
-  const fy = PH - FH;
   doc.setFillColor(...RED);
   doc.rect(0, fy, PW, FH, "F");
   /* blue accent line on top edge of the footer */
