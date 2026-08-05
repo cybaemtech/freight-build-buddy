@@ -177,10 +177,14 @@ export function computeFits(state: RFQState) {
   const H = toMM(state.pHeight, state.dimUnit);
   const th = state.thickOverride ? Number(state.thickOverride) : state.protTh;
 
-  const eff = [L + th * 2, W + th * 2, H + th * 2].sort((a, b) => a - b);
+  const eff = [L + th * 2, W + th * 2, H + th * 2].sort((a, b) => a - b) as [
+    number,
+    number,
+    number,
+  ];
   const fits: Box[] = [];
   BOX_CATALOG.forEach((box) => {
-    const bd = [box.L, box.W, box.H].sort((a, b) => a - b);
+    const bd = [box.L, box.W, box.H].sort((a, b) => a - b) as [number, number, number];
     if (eff[0] <= bd[0] && eff[1] <= bd[1] && eff[2] <= bd[2] && eff[0] > 0) {
       const boxVol = box.L * box.W * box.H;
       const prodVol = eff[0] * eff[1] * eff[2];
