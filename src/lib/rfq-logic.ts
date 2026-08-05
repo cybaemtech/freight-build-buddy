@@ -314,32 +314,196 @@ Notes: ${state.cNotes}
 }
 
 /* ============ PDF (client-side, no cost figures included) ============ */
+import logoAsset from "@/assets/vevra-logo.png.asset.json";
+
+async function loadLogo(): Promise<string | null> {
+  try {
+    const res = await fetch(logoAsset.url);
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    return await new Promise<string>((resolve, reject) => {
+      const fr = new FileReader();
+      fr.onload = () => resolve(String(fr.result));
+      fr.onerror = reject;
+      fr.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
+
+type Row = [string, string];
+
+function buildSections(state: RFQState): { title: string; rows: Row[] }[] {
+  const c = computeCosts(state);
+  const box = state.selectedBox || ({} as Box);
+  return [
+    {
+      title: "Shipment",
+      rows: [
+        ["Type", state.shipmentType],
+        ["Route", routeLabel(state)],
+        ["Purpose", state.purpose],
+        ["Priority", state.transportPref],
+      ],
+    },
+    {
+      title: "Product",
+      rows: [
+        ["Name", state.productName],
+        ["Category", state.category],
+        ["Quantity", state.qty],
+        ["Value", `${state.currency} ${state.prodValue} / unit`],
+        ["HS Code", state.hsCode || "Not Provided"],
+        ["Dimensions", `${state.pLength} x ${state.pWidth} x ${state.pHeight} ${state.dimUnit}`],
+        ["Weight", `${state.pWeight} ${state.weightUnit} / unit`],
+        ["Stackable", state.stackable],
+        ["Temperature Sensitive", state.tempSensitive],
+        ["Hazardous", state.hazardous],
+      ],
+    },
+    {
+      title: "Packaging",
+      rows: [
+        ["Recommended carton", box.name || "—"],
+        ["Protection level", state.protLevel],
+        ["Protection", `${state.protMat} (${state.thickOverride || state.protTh}mm)`],
+        ["Void fill", state.voidFill],
+        ["Orientation requirement", state.orientation],
+        ["Chargeable weight", `${c.chargeableWeight.toFixed(2)} kg`],
+      ],
+    },
+    {
+      title: "Transport",
+      rows: [
+        ["Mode", state.mode],
+        ["Preferred carrier", state.carrier || "No preference"],
+        ["Remote / rural destination", state.remoteArea ? "Yes" : "No"],
+      ],
+    },
+    {
+      title: "Contact",
+      rows: [
+        ["Name", state.cName],
+        ["Company", state.cCompany],
+        ["Email", state.cEmail],
+        ["Phone", state.cPhone],
+        ["Notes", state.cNotes || "—"],
+      ],
+    },
+  ];
+}
+
 export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "pt", format: "a4" });
-  const marginX = 48,
-    maxWidth = 500;
-  let y = 56;
+  const PW = doc.internal.pageSize.getWidth();
+  const PH = doc.internal.pageSize.getHeight();
+  const M = 46;
+  const RED: [number, number, number] = [166, 32, 36];
+  const BLUE: [number, number, number] = [30, 71, 130];
+  const INK: [number, number, number] = [34, 30, 28];
+  const SOFT: [number, number, number] = [110, 104, 100];
+  const FOOTER_H = 62;
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(18);
-  doc.text("Packaging & Freight RFQ", marginX, y);
-  y += 22;
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.setTextColor(110, 95, 70);
-  doc.text(`${rfqNumber}  ·  ${CONFIG.companyName}`, marginX, y);
-  y += 24;
-  doc.setTextColor(20, 20, 20);
+  const logo = await loadLogo();
 
-  const lines = doc.splitTextToSize(buildRFQText(state, rfqNumber), maxWidth);
-  lines.forEach((line: string) => {
-    if (y > 780) {
-      doc.addPage();
-      y = 56;
+  const drawHeader = () => {
+    doc.setFillColor(248, 245, 240);
+    doc.rect(0, 0, PW, 96, "F");
+    doc.setFillColor(...RED);
+    doc.rect(0, 96, PW, 3, "F");
+    if (logo) doc.addImage(logo, "PNG", M, 26, 132, 51);
+    else {
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(20);
+      doc.setTextColor(...RED);
+      doc.text("VEVRA", M, 52);
     }
-    doc.text(line, marginX, y);
-    y += 14;
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(15);
+    doc.setTextColor(...INK);
+    doc.text("Packaging & Freight RFQ", PW - M, 46, { align: "right" });
+    doc.setFont("courier", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(...RED);
+    doc.text(rfqNumber, PW - M, 63, { align: "right" });
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8.5);
+    doc.setTextColor(...SOFT);
+    doc.text(
+      new Date().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }),
+      PW - M,
+      77,
+      { align: "right" },
+    );
+  };
+
+  const drawFooter = () => {
+    const y = PH - FOOTER_H;
+    doc.setFillColor(...RED);
+    doc.rect(0, y, PW, FOOTER_H, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.text("VEVRA PACKAGING PVT. LTD.", M, y + 24);
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.text("Empowering Packaging", M, y + 39);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.text("Contact: +91 8484853484", PW - M, y + 19, { align: "right" });
+    doc.text("info@vevrapackaging.com", PW - M, y + 33, { align: "right" });
+    doc.text("Mon - Sat: 10:00am - 7:00pm", PW - M, y + 47, { align: "right" });
+  };
+
+  drawHeader();
+  drawFooter();
+
+  let y = 128;
+  const bottom = PH - FOOTER_H - 24;
+  const labelX = M;
+  const valueX = M + 168;
+  const valueW = PW - M - valueX;
+
+  const newPage = () => {
+    doc.addPage();
+    drawHeader();
+    drawFooter();
+    y = 128;
+  };
+
+  buildSections(state).forEach((section) => {
+    if (y + 46 > bottom) newPage();
+    doc.setFillColor(...BLUE);
+    doc.rect(M, y - 11, 3, 14, "F");
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(11);
+    doc.setTextColor(...BLUE);
+    doc.text(section.title.toUpperCase(), M + 10, y);
+    y += 10;
+    doc.setDrawColor(225, 218, 208);
+    doc.setLineWidth(0.7);
+    doc.line(M, y, PW - M, y);
+    y += 16;
+
+    section.rows.forEach(([label, value]) => {
+      const lines = doc.splitTextToSize(String(value || "—"), valueW) as string[];
+      const h = Math.max(14, lines.length * 13);
+      if (y + h > bottom) newPage();
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(...SOFT);
+      doc.text(label.toUpperCase(), labelX, y);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.setTextColor(...INK);
+      doc.text(lines, valueX, y);
+      y += h + 5;
+    });
+    y += 16;
   });
+
   return doc;
 }
+
