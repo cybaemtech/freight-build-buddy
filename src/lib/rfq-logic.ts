@@ -284,18 +284,25 @@ Name: ${state.productName}
 Category: ${state.category}
 Quantity: ${state.qty}
 Value: ${state.currency} ${state.prodValue} / unit
+HS Code: ${state.hsCode || "Not Provided"}
 Dimensions: ${state.pLength}x${state.pWidth}x${state.pHeight} ${state.dimUnit}
 Weight: ${state.pWeight} ${state.weightUnit} / unit
+Stackable: ${state.stackable}
+Temperature Sensitive: ${state.tempSensitive}
+Hazardous: ${state.hazardous}
 
 PACKAGING
 Recommended carton: ${box.name}
-Protection: ${state.protMat} (${state.protTh}mm)
+Protection level: ${state.protLevel}
+Protection: ${state.protMat} (${state.thickOverride ? state.thickOverride : state.protTh}mm)
 Void fill: ${state.voidFill}
+Orientation requirement: ${state.orientation}
 Chargeable weight: ${c.chargeableWeight.toFixed(2)} kg
 
 TRANSPORT
 Mode: ${state.mode}
 Preferred carrier: ${state.carrier || "No preference"}
+Remote / rural destination: ${state.remoteArea ? "Yes" : "No"}
 
 CONTACT
 Name: ${state.cName}
