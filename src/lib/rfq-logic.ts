@@ -427,6 +427,25 @@ function buildCards(state: RFQState): { left: Card[]; right: Card[] } {
     ],
     right: [
       {
+        title: "Trade & Compliance",
+        accent: "blue",
+        rows: [
+          ["Incoterms", incotermFor(state)],
+          ["Country of Origin", state.originCountry || COMPANY_LEGAL.countryOfOrigin],
+          [
+            "Target Delivery Date",
+            new Date(Date.now() + 10 * 86400000).toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            }),
+          ],
+          ["Quote Validity", COMPANY_LEGAL.quoteValidity],
+          ["Currency Preference", state.currency],
+        ],
+      },
+      {
+
         title: "Transport Information",
         accent: "red",
         rows: [
