@@ -556,7 +556,19 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     { align: "center" },
   );
 
-  let y = HH + 26;
+  /* corporate credentials (subtle) */
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7);
+  doc.setTextColor(120, 124, 132);
+  doc.text(
+    `CIN: ${COMPANY_LEGAL.cin}   |   GSTIN: ${COMPANY_LEGAL.gstin}   |   IEC: ${COMPANY_LEGAL.iec}`,
+    PW / 2,
+    HH + 32,
+    { align: "center" },
+  );
+
+  let y = HH + 34;
+
 
 
 
