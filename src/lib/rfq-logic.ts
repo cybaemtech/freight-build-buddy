@@ -576,7 +576,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   const GAP = 14;
   const colW = (PW - M * 2 - GAP) / 2;
   const HDR_H = 19;
-  const ROW_H = 17;
+  const ROW_H = 16;
 
   const PAD = 11;
 
