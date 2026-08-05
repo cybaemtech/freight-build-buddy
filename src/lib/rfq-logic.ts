@@ -460,7 +460,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   doc.setTextColor(...LABEL);
   doc.text("Empowering Packaging", nameX, y + 28);
 
-  y += 48;
+  y += 58;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
   doc.setTextColor(...INK);
@@ -479,7 +479,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     { align: "right" },
   );
 
-  y += 12;
+  y += 14;
   doc.setDrawColor(...LINE);
   doc.setLineWidth(0.8);
   doc.line(M, y, PW - M, y);
