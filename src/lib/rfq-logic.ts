@@ -678,8 +678,9 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(7);
     doc.setTextColor(...INK);
-    doc.text(t.lines, M + PAD + 46, ty, { lineHeightFactor: 1.2 });
-    ty += Math.max(11, t.lines.length * 8.4) + 3;
+    doc.text(t.lines, M + PAD + LBL_W, ty, { lineHeightFactor: 1.2 });
+    ty += Math.max(11, t.lines.length * 8.4) + 4;
+
   });
 
   /* Signature card */
