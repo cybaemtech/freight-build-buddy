@@ -334,6 +334,16 @@ async function loadLogo(): Promise<string | null> {
 
 type Row = [string, string];
 
+function pdfSafe(v: string) {
+  return String(v || "-")
+    .replace(/[\u2192\u27F6]/g, "->")
+    .replace(/[\u00D7]/g, "x")
+    .replace(/[\u2022\u00B7]/g, "-")
+    .replace(/[\u2013\u2014\u2012]/g, "-")
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"');
+}
+
 function buildSections(state: RFQState): { title: string; rows: Row[] }[] {
   const c = computeCosts(state);
   const box = state.selectedBox || ({} as Box);
@@ -409,7 +419,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   const logo = await loadLogo();
 
   const drawHeader = () => {
-    doc.setFillColor(248, 245, 240);
+    doc.setFillColor(255, 255, 255);
     doc.rect(0, 0, PW, 96, "F");
     doc.setFillColor(...RED);
     doc.rect(0, 96, PW, 3, "F");
@@ -488,7 +498,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     y += 16;
 
     section.rows.forEach(([label, value]) => {
-      const lines = doc.splitTextToSize(String(value || "—"), valueW) as string[];
+      const lines = doc.splitTextToSize(pdfSafe(value), valueW) as string[];
       const h = Math.max(14, lines.length * 13);
       if (y + h > bottom) newPage();
       doc.setFont("helvetica", "normal");
@@ -499,9 +509,9 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
       doc.setFontSize(10);
       doc.setTextColor(...INK);
       doc.text(lines, valueX, y);
-      y += h + 5;
+      y += h + 3;
     });
-    y += 16;
+    y += 13;
   });
 
   return doc;
