@@ -484,7 +484,8 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
   };
 
   buildSections(state).forEach((section) => {
-    if (y + 46 > bottom) newPage();
+    const estH = 26 + section.rows.length * 17 + 13;
+    if (y + Math.min(estH, 46) > bottom || (y + estH > bottom && estH <= bottom - 128)) newPage();
     doc.setFillColor(...BLUE);
     doc.rect(M, y - 11, 3, 14, "F");
     doc.setFont("helvetica", "bold");
