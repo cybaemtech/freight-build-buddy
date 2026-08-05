@@ -586,7 +586,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
       l,
       lines: doc.splitTextToSize(pdfSafe(v), valW) as string[],
     }));
-    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 11 + 7), 0) + 6;
+    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 10 + 6), 0) + 6;
     const h = HDR_H + bodyH;
 
     /* shadow + card */
@@ -609,7 +609,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
     let ry = top + HDR_H + 15;
     wrapped.forEach((r, i) => {
-      const rh = Math.max(ROW_H, r.lines.length * 11 + 7);
+      const rh = Math.max(ROW_H, r.lines.length * 10 + 6);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(8);
       doc.setTextColor(...LABEL);
