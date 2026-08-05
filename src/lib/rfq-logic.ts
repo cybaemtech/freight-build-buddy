@@ -1,3 +1,4 @@
+import logoAsset from "@/assets/vevra-logo.png.asset.json";
 /* ============ CONFIG — VEVRA PACKAGING ============ */
 export const CONFIG = {
   companyName: "VEVRA PACKAGING",
@@ -314,7 +315,6 @@ Notes: ${state.cNotes}
 }
 
 /* ============ PDF (client-side, no cost figures included) ============ */
-import logoAsset from "@/assets/vevra-logo.png.asset.json";
 
 async function loadLogo(): Promise<string | null> {
   try {
