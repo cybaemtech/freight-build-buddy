@@ -573,10 +573,11 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
 
   /* ---------- Cards ---------- */
-  const GAP = 16;
+  const GAP = 14;
   const colW = (PW - M * 2 - GAP) / 2;
   const HDR_H = 19;
-  const ROW_H = 18;
+  const ROW_H = 17;
+
   const PAD = 11;
 
   const drawCard = (card: Card, x: number, top: number) => {
