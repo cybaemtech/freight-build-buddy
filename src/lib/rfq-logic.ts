@@ -639,7 +639,79 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     ry2 += drawCard(c, M + colW + GAP, ry2) + GAP;
   });
 
+  /* ---------- Terms & Conditions + Signature block ---------- */
+  const FH = 104;
+  const blockTop = Math.max(ly, ry2) - GAP + 14;
+  const sigW = 152;
+  const tcW = PW - M * 2 - sigW - GAP;
+  const availH = PH - FH - 10 - blockTop;
+
+  /* T&C card */
+  const tcLines = TERMS.map(([k, v]) => ({
+    k,
+    lines: doc.splitTextToSize(pdfSafe(v), tcW - PAD * 2 - 46) as string[],
+  }));
+  const tcBodyH = tcLines.reduce((s, t) => s + Math.max(11, t.lines.length * 8.4) + 3, 0) + 10;
+  const tcH = Math.min(availH, HDR_H + tcBodyH);
+
+  doc.setFillColor(224, 226, 231);
+  doc.roundedRect(M + 1.2, blockTop + 1.6, tcW, tcH, 5, 5, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(M, blockTop, tcW, tcH, 5, 5, "F");
+  doc.setFillColor(...BLUE);
+  doc.roundedRect(M, blockTop, tcW, HDR_H + 5, 5, 5, "F");
+  doc.rect(M, blockTop + HDR_H - 1, tcW, 6, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.rect(M, blockTop + HDR_H, tcW, 5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("TERMS & CONDITIONS", M + PAD, blockTop + 12.5);
+
+  let ty = blockTop + HDR_H + 13;
+  tcLines.forEach((t) => {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7);
+    doc.setTextColor(...LABEL);
+    doc.text(`${t.k.toUpperCase()}:`, M + PAD, ty);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.setTextColor(...INK);
+    doc.text(t.lines, M + PAD + 46, ty, { lineHeightFactor: 1.2 });
+    ty += Math.max(11, t.lines.length * 8.4) + 3;
+  });
+
+  /* Signature card */
+  const sx = M + tcW + GAP;
+  doc.setFillColor(224, 226, 231);
+  doc.roundedRect(sx + 1.2, blockTop + 1.6, sigW, tcH, 5, 5, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(sx, blockTop, sigW, tcH, 5, 5, "F");
+  doc.setFillColor(...RED);
+  doc.roundedRect(sx, blockTop, sigW, HDR_H + 5, 5, 5, "F");
+  doc.rect(sx, blockTop + HDR_H - 1, sigW, 6, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.rect(sx, blockTop + HDR_H, sigW, 5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("AUTHORIZED SIGNATORY", sx + PAD, blockTop + 12.5);
+
+  let sy = blockTop + HDR_H + 20;
+  const sigFields = ["Name", "Date", "Company Seal"];
+  sigFields.forEach((f) => {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7);
+    doc.setTextColor(...LABEL);
+    doc.text(f.toUpperCase(), sx + PAD, sy - 7);
+    doc.setDrawColor(...LINE);
+    doc.setLineWidth(0.7);
+    doc.line(sx + PAD, sy, sx + sigW - PAD, sy);
+    sy += Math.max(22, (tcH - HDR_H - 26) / sigFields.length);
+  });
+
   /* ---------- Footer (full-width red block) ---------- */
+
   const FH = 104;
   const fy = PH - FH;
   doc.setFillColor(...RED);
