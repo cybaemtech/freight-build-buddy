@@ -1,7 +1,7 @@
-/* ============ CONFIG — Cybaem Tech ============ */
+/* ============ CONFIG — VEVRA PACKAGING ============ */
 export const CONFIG = {
-  companyName: "Cybaem Tech Pvt. Ltd.",
-  salesEmail: "enquiry@cybaemtech.com",
+  companyName: "VEVRA PACKAGING",
+  salesEmail: "enquiry@vevrapackaging.com",
   emailjs: {
     enabled: false,
     publicKey: "YOUR_EMAILJS_PUBLIC_KEY",
