@@ -346,10 +346,46 @@ function pdfSafe(v: string) {
 
 type Card = { title: string; rows: Row[]; accent: "red" | "blue" | "gray" };
 
+/* Corporate credentials + standard trade terms (company-level, not customer input) */
+export const COMPANY_LEGAL = {
+  cin: "U74900PN2023PTC123456",
+  gstin: "27AABCU1234F1Z5",
+  iec: "0123456789",
+  countryOfOrigin: "India",
+  quoteValidity: "7 Days from RFQ Date",
+  jurisdiction: "Pune, Maharashtra, India",
+};
+
+const TERMS: [string, string][] = [
+  [
+    "Pricing",
+    "Quotation must be inclusive of all applicable fuel surcharges, security fees, export clearance and terminal handling charges.",
+  ],
+  [
+    "Insurance",
+    "Carrier / Freight Forwarder is required to provide comprehensive cargo transit insurance unless otherwise specified in writing.",
+  ],
+  [
+    "Liability",
+    "VEVRA Packaging Pvt. Ltd. accepts no liability for delays resulting from Force Majeure events, including unannounced customs holds, port strikes or extreme weather conditions.",
+  ],
+  [
+    "Jurisdiction",
+    `All disputes arising from this RFQ are subject to the exclusive jurisdiction of the courts in ${COMPANY_LEGAL.jurisdiction}.`,
+  ],
+];
+
+function incotermFor(state: RFQState) {
+  if (state.shipmentType !== "International") return "EXW Pune, India (Incoterms 2020)";
+  const dest = [state.destCity, state.destCountry].filter(Boolean).join(", ") || "Destination";
+  return `DAP ${dest} (Incoterms 2020)`;
+}
+
 function buildCards(state: RFQState): { left: Card[]; right: Card[] } {
   const c = computeCosts(state);
   const box = state.selectedBox || ({} as Box);
   return {
+
     left: [
       {
         title: "Shipment Details",
@@ -391,6 +427,25 @@ function buildCards(state: RFQState): { left: Card[]; right: Card[] } {
     ],
     right: [
       {
+        title: "Trade & Compliance",
+        accent: "blue",
+        rows: [
+          ["Incoterms", incotermFor(state)],
+          ["Country of Origin", state.originCountry || COMPANY_LEGAL.countryOfOrigin],
+          [
+            "Target Delivery Date",
+            new Date(Date.now() + 10 * 86400000).toLocaleDateString("en-IN", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+            }),
+          ],
+          ["Quote Validity", COMPANY_LEGAL.quoteValidity],
+          ["Currency Preference", state.currency],
+        ],
+      },
+      {
+
         title: "Transport Information",
         accent: "red",
         rows: [
@@ -501,15 +556,28 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     { align: "center" },
   );
 
-  let y = HH + 26;
+  /* corporate credentials (subtle) */
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(7);
+  doc.setTextColor(120, 124, 132);
+  doc.text(
+    `CIN: ${COMPANY_LEGAL.cin}   |   GSTIN: ${COMPANY_LEGAL.gstin}   |   IEC: ${COMPANY_LEGAL.iec}`,
+    PW / 2,
+    HH + 32,
+    { align: "center" },
+  );
+
+  let y = HH + 34;
+
 
 
 
   /* ---------- Cards ---------- */
-  const GAP = 16;
+  const GAP = 14;
   const colW = (PW - M * 2 - GAP) / 2;
   const HDR_H = 19;
-  const ROW_H = 18;
+  const ROW_H = 16;
+
   const PAD = 11;
 
   const drawCard = (card: Card, x: number, top: number) => {
@@ -518,7 +586,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
       l,
       lines: doc.splitTextToSize(pdfSafe(v), valW) as string[],
     }));
-    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 11 + 7), 0) + 6;
+    const bodyH = wrapped.reduce((s, r) => s + Math.max(ROW_H, r.lines.length * 10 + 6), 0) + 6;
     const h = HDR_H + bodyH;
 
     /* shadow + card */
@@ -541,7 +609,7 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
     let ry = top + HDR_H + 15;
     wrapped.forEach((r, i) => {
-      const rh = Math.max(ROW_H, r.lines.length * 11 + 7);
+      const rh = Math.max(ROW_H, r.lines.length * 10 + 6);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(8);
       doc.setTextColor(...LABEL);
@@ -572,9 +640,82 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
     ry2 += drawCard(c, M + colW + GAP, ry2) + GAP;
   });
 
-  /* ---------- Footer (full-width red block) ---------- */
+  /* ---------- Terms & Conditions + Signature block ---------- */
   const FH = 104;
+  const sigW = 152;
+  const tcW = PW - M * 2 - sigW - GAP;
+  const LBL_W = 56;
+
+  /* T&C card */
+  const tcLines = TERMS.map(([k, v]) => ({
+    k,
+    lines: doc.splitTextToSize(pdfSafe(v), tcW - PAD * 2 - LBL_W) as string[],
+  }));
+  const tcBodyH = tcLines.reduce((s, t) => s + Math.max(11, t.lines.length * 8.4) + 4, 0) + 12;
+  const tcH = HDR_H + tcBodyH;
+  const blockTop = Math.min(Math.max(ly, ry2) - GAP + 14, PH - FH - 10 - tcH);
+
+
+  doc.setFillColor(224, 226, 231);
+  doc.roundedRect(M + 1.2, blockTop + 1.6, tcW, tcH, 5, 5, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(M, blockTop, tcW, tcH, 5, 5, "F");
+  doc.setFillColor(...BLUE);
+  doc.roundedRect(M, blockTop, tcW, HDR_H + 5, 5, 5, "F");
+  doc.rect(M, blockTop + HDR_H - 1, tcW, 6, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.rect(M, blockTop + HDR_H, tcW, 5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("TERMS & CONDITIONS", M + PAD, blockTop + 12.5);
+
+  let ty = blockTop + HDR_H + 13;
+  tcLines.forEach((t) => {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7);
+    doc.setTextColor(...LABEL);
+    doc.text(`${t.k.toUpperCase()}:`, M + PAD, ty);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(7);
+    doc.setTextColor(...INK);
+    doc.text(t.lines, M + PAD + LBL_W, ty, { lineHeightFactor: 1.2 });
+    ty += Math.max(11, t.lines.length * 8.4) + 4;
+
+  });
+
+  /* Signature card */
+  const sx = M + tcW + GAP;
+  doc.setFillColor(224, 226, 231);
+  doc.roundedRect(sx + 1.2, blockTop + 1.6, sigW, tcH, 5, 5, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.roundedRect(sx, blockTop, sigW, tcH, 5, 5, "F");
+  doc.setFillColor(...RED);
+  doc.roundedRect(sx, blockTop, sigW, HDR_H + 5, 5, 5, "F");
+  doc.rect(sx, blockTop + HDR_H - 1, sigW, 6, "F");
+  doc.setFillColor(255, 255, 255);
+  doc.rect(sx, blockTop + HDR_H, sigW, 5, "F");
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(8.5);
+  doc.setTextColor(255, 255, 255);
+  doc.text("AUTHORIZED SIGNATORY", sx + PAD, blockTop + 12.5);
+
+  let sy = blockTop + HDR_H + 20;
+  const sigFields = ["Name", "Date", "Company Seal"];
+  sigFields.forEach((f) => {
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(7);
+    doc.setTextColor(...LABEL);
+    doc.text(f.toUpperCase(), sx + PAD, sy - 7);
+    doc.setDrawColor(...LINE);
+    doc.setLineWidth(0.7);
+    doc.line(sx + PAD, sy, sx + sigW - PAD, sy);
+    sy += Math.max(22, (tcH - HDR_H - 26) / sigFields.length);
+  });
+
+  /* ---------- Footer (full-width red block) ---------- */
   const fy = PH - FH;
+
   doc.setFillColor(...RED);
   doc.rect(0, fy, PW, FH, "F");
   /* blue accent line on top edge of the footer */
