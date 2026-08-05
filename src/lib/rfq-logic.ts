@@ -641,18 +641,19 @@ export async function buildRFQPDF(state: RFQState, rfqNumber: string) {
 
   /* ---------- Terms & Conditions + Signature block ---------- */
   const FH = 104;
-  const blockTop = Math.max(ly, ry2) - GAP + 14;
   const sigW = 152;
   const tcW = PW - M * 2 - sigW - GAP;
-  const availH = PH - FH - 10 - blockTop;
+  const LBL_W = 56;
 
   /* T&C card */
   const tcLines = TERMS.map(([k, v]) => ({
     k,
-    lines: doc.splitTextToSize(pdfSafe(v), tcW - PAD * 2 - 46) as string[],
+    lines: doc.splitTextToSize(pdfSafe(v), tcW - PAD * 2 - LBL_W) as string[],
   }));
-  const tcBodyH = tcLines.reduce((s, t) => s + Math.max(11, t.lines.length * 8.4) + 3, 0) + 10;
-  const tcH = Math.min(availH, HDR_H + tcBodyH);
+  const tcBodyH = tcLines.reduce((s, t) => s + Math.max(11, t.lines.length * 8.4) + 4, 0) + 12;
+  const tcH = HDR_H + tcBodyH;
+  const blockTop = Math.min(Math.max(ly, ry2) - GAP + 14, PH - FH - 10 - tcH);
+
 
   doc.setFillColor(224, 226, 231);
   doc.roundedRect(M + 1.2, blockTop + 1.6, tcW, tcH, 5, 5, "F");
