@@ -685,6 +685,22 @@ function RFQBuilder() {
                     <span>Weight</span>
                     {state.pWeight} {state.weightUnit} / unit
                   </div>
+                  <div>
+                    <span>HS Code</span>
+                    {state.hsCode || "Not Provided"}
+                  </div>
+                  <div>
+                    <span>Stackable</span>
+                    {state.stackable}
+                  </div>
+                  <div>
+                    <span>Temperature sensitive</span>
+                    {state.tempSensitive}
+                  </div>
+                  <div>
+                    <span>Hazardous</span>
+                    {state.hazardous}
+                  </div>
                 </div>
               </div>
 
@@ -697,12 +713,20 @@ function RFQBuilder() {
                     {chosen!.custom ? "" : `(${chosen!.L}×${chosen!.W}×${chosen!.H} mm)`}
                   </div>
                   <div>
+                    <span>Protection level</span>
+                    {state.protLevel}
+                  </div>
+                  <div>
                     <span>Protection</span>
                     {state.protMat} · {state.protTh}mm
                   </div>
                   <div>
                     <span>Void fill</span>
                     {state.voidFill}
+                  </div>
+                  <div>
+                    <span>Orientation requirement</span>
+                    {state.orientation}
                   </div>
                   <div>
                     <span>Chargeable weight</span>
@@ -722,6 +746,11 @@ function RFQBuilder() {
                     <span>Preferred carrier</span>
                     {state.carrier || "No preference — recommend best fit"}
                   </div>
+                  <div>
+                    <span>Destination is a remote / rural area</span>
+                    {state.remoteArea ? "Yes" : "No"}
+                  </div>
+
                 </div>
               </div>
             </div>
