@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as BusinessModelRouteImport } from './routes/business-model'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as CorporateOfficeRouteImport } from './routes/corporate-office'
+import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -44,6 +45,11 @@ const CorporateOfficeRoute = CorporateOfficeRouteImport.update({
   path: '/corporate-office',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestimonialsRoute = TestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/corporate-office': typeof CorporateOfficeRoute
+  '/testimonials': typeof TestimonialsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/corporate-office': typeof CorporateOfficeRoute
+  '/testimonials': typeof TestimonialsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/corporate-office': typeof CorporateOfficeRoute
+  '/testimonials': typeof TestimonialsRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/corporate-office'
+    | '/testimonials'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/corporate-office'
+    | '/testimonials'
     | '/products/$slug'
     | '/services/$slug'
     | '/products'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/corporate-office'
+    | '/testimonials'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   BusinessModelRoute: typeof BusinessModelRoute
   CalculatorRoute: typeof CalculatorRoute
   CorporateOfficeRoute: typeof CorporateOfficeRoute
+  TestimonialsRoute: typeof TestimonialsRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CorporateOfficeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/testimonials': {
+      id: '/testimonials'
+      path: '/testimonials'
+      fullPath: '/testimonials'
+      preLoaderRoute: typeof TestimonialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/products'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   BusinessModelRoute: BusinessModelRoute,
   CalculatorRoute: CalculatorRoute,
   CorporateOfficeRoute: CorporateOfficeRoute,
+  TestimonialsRoute: TestimonialsRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
