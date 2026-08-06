@@ -38,7 +38,7 @@ function ProductDetail() {
       <Section eyebrow="Overview" title={`${product.name} solutions`}>
         <p className="max-w-3xl text-muted-foreground">{product.intro}</p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-          {product.points.map((pt) => (
+          {product.points.map((pt: string) => (
             <li key={pt} className="rounded-md border border-border border-l-4 border-l-brand px-4 py-3 text-sm">
               {pt}
             </li>
