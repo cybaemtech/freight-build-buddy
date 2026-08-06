@@ -16,6 +16,7 @@ import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as ClientsRouteImport } from './routes/clients'
 import { Route as CorporateOfficeRouteImport } from './routes/corporate-office'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
+import { Route as WarehousesRouteImport } from './routes/warehouses'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -56,6 +57,11 @@ const TestimonialsRoute = TestimonialsRouteImport.update({
   path: '/testimonials',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WarehousesRoute = WarehousesRouteImport.update({
+  id: '/warehouses',
+  path: '/warehouses',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
   path: '/products/',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/clients': typeof ClientsRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
+  '/warehouses': typeof WarehousesRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -98,6 +105,7 @@ export interface FileRoutesByTo {
   '/clients': typeof ClientsRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
+  '/warehouses': typeof WarehousesRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -112,6 +120,7 @@ export interface FileRoutesById {
   '/clients': typeof ClientsRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
+  '/warehouses': typeof WarehousesRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -127,6 +136,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/corporate-office'
     | '/testimonials'
+    | '/warehouses'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/corporate-office'
     | '/testimonials'
+    | '/warehouses'
     | '/products/$slug'
     | '/services/$slug'
     | '/products'
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/corporate-office'
     | '/testimonials'
+    | '/warehouses'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   ClientsRoute: typeof ClientsRoute
   CorporateOfficeRoute: typeof CorporateOfficeRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  WarehousesRoute: typeof WarehousesRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TestimonialsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/warehouses': {
+      id: '/warehouses'
+      path: '/warehouses'
+      fullPath: '/warehouses'
+      preLoaderRoute: typeof WarehousesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/products'
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   ClientsRoute: ClientsRoute,
   CorporateOfficeRoute: CorporateOfficeRoute,
   TestimonialsRoute: TestimonialsRoute,
+  WarehousesRoute: WarehousesRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
