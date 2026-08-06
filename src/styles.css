@@ -143,3 +143,26 @@
     color: var(--color-foreground);
   }
 }
+
+/* ---------- VEVRA brand tokens ---------- */
+:root {
+  --brand-red: oklch(0.55 0.21 27.5);
+  --brand-red-dark: oklch(0.46 0.19 27.5);
+  --brand-red-soft: oklch(0.96 0.03 27.5);
+  --brand-blue: oklch(0.42 0.14 259);
+  --brand-blue-dark: oklch(0.29 0.1 259);
+  --brand-blue-soft: oklch(0.96 0.02 259);
+  --primary: var(--brand-red);
+  --primary-foreground: oklch(1 0 0);
+  --ring: var(--brand-red);
+}
+
+@theme inline {
+  --color-brand: var(--brand-red);
+  --color-brand-dark: var(--brand-red-dark);
+  --color-brand-soft: var(--brand-red-soft);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-dark: var(--brand-blue-dark);
+  --color-brand-blue-soft: var(--brand-blue-soft);
+}
+
