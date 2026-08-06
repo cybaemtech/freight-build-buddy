@@ -19,7 +19,7 @@ import {
 } from "@/lib/rfq-logic";
 import vevraLogo from "@/assets/vevra-logo.png.asset.json";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/calculator")({
   head: () => ({
     meta: [
       { title: "RFQ — Packaging & Freight RFQ Builder | VEVRA PACKAGING" },
