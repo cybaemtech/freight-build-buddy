@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BusinessModelRouteImport } from './routes/business-model'
 import { Route as CalculatorRouteImport } from './routes/calculator'
+import { Route as CorporateOfficeRouteImport } from './routes/corporate-office'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ServicesIndexRouteImport } from './routes/services.index'
@@ -36,6 +37,11 @@ const BusinessModelRoute = BusinessModelRouteImport.update({
 const CalculatorRoute = CalculatorRouteImport.update({
   id: '/calculator',
   path: '/calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorporateOfficeRoute = CorporateOfficeRouteImport.update({
+  id: '/corporate-office',
+  path: '/corporate-office',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
+  '/corporate-office': typeof CorporateOfficeRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
+  '/corporate-office': typeof CorporateOfficeRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products': typeof ProductsIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
+  '/corporate-office': typeof CorporateOfficeRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/services/$slug': typeof ServicesSlugRoute
   '/products/': typeof ProductsIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-model'
     | '/calculator'
+    | '/corporate-office'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-model'
     | '/calculator'
+    | '/corporate-office'
     | '/products/$slug'
     | '/services/$slug'
     | '/products'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/business-model'
     | '/calculator'
+    | '/corporate-office'
     | '/products/$slug'
     | '/services/$slug'
     | '/products/'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BusinessModelRoute: typeof BusinessModelRoute
   CalculatorRoute: typeof CalculatorRoute
+  CorporateOfficeRoute: typeof CorporateOfficeRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/calculator'
       fullPath: '/calculator'
       preLoaderRoute: typeof CalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/corporate-office': {
+      id: '/corporate-office'
+      path: '/corporate-office'
+      fullPath: '/corporate-office'
+      preLoaderRoute: typeof CorporateOfficeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BusinessModelRoute: BusinessModelRoute,
   CalculatorRoute: CalculatorRoute,
+  CorporateOfficeRoute: CorporateOfficeRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   ProductsIndexRoute: ProductsIndexRoute,
