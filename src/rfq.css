@@ -1,24 +1,22 @@
-/* CRATED — Packaging & Freight RFQ Builder design system (Cybaem Tech) */
+/* VEVRA PACKAGING — Packaging & Freight RFQ Builder design system */
 .rfq-page{
-  --bg:#221a10;
-  --bg2:#2c2216;
-  --surface:#f7f1e3;
-  --surface2:#eee2c8;
-  --ink:#241b10;
-  --ink-soft:#6a5a41;
-  --accent:#c1622e;
-  --accent-dark:#9a4c22;
-  --blue:#37647f;
-  --blue-soft:#dbe8ec;
-  --green:#4c6b47;
-  --line:#d8c8a2;
-  --danger:#a34430;
+  --bg:#ffffff;
+  --bg2:#ffffff;
+  --surface:#ffffff;
+  --surface2:#f4f7fb;
+  --ink:#12263f;
+  --ink-soft:#5b6b80;
+  --accent:#d81f26;
+  --accent-dark:#a8161c;
+  --blue:#1a4f9c;
+  --blue-soft:#e6eefa;
+  --green:#1a4f9c;
+  --line:#d8e0ea;
+  --danger:#d81f26;
   --rfq-radius:10px;
-  --rfq-shadow:0 10px 30px rgba(20,14,4,.28);
+  --rfq-shadow:0 8px 26px rgba(18,38,63,.10);
 
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 26px),
-    linear-gradient(180deg,#221a10 0%,#2c2216 100%);
+  background:#ffffff;
   color:var(--ink);
   font-family:'Inter',system-ui,sans-serif;
   min-height:100vh;
