@@ -141,7 +141,14 @@ function RFQBuilder() {
   return (
     <div className="rfq-page">
       <div className="wrap">
+        <Link
+          to="/"
+          className="mb-4 inline-block text-xs font-semibold uppercase tracking-widest text-brand-blue hover:text-brand"
+        >
+          ← Back to website
+        </Link>
         <header className="brand">
+
           <img src={vevraLogo.url} alt="VEVRA Packaging Pvt. Ltd. logo" className="logo" />
           <div className="brand-text">
             <div className="mark">Request For Quotation [RFQ]</div>
