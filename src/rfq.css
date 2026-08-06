@@ -139,7 +139,7 @@
 
 /* ---------- Summary / RFQ ---------- */
 .rfq-page .rfq-id{
-  font-family:'IBM Plex Mono',monospace;background:var(--ink);color:var(--surface);
+  font-family:'IBM Plex Mono',monospace;background:var(--blue);color:#fff;
   padding:10px 16px;border-radius:7px;display:inline-block;font-size:14px;letter-spacing:1px;margin-bottom:18px;
 }
 .rfq-page .summary-block{margin-bottom:18px;}
@@ -158,7 +158,7 @@
 }
 .rfq-page .btn-primary{background:var(--accent);color:#fff;}
 .rfq-page .btn-primary:hover{background:var(--accent-dark);}
-.rfq-page .btn-primary:disabled{background:#c9bda3;cursor:not-allowed;}
+.rfq-page .btn-primary:disabled{background:#c3ccd8;cursor:not-allowed;}
 .rfq-page .btn-ghost{background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);}
 .rfq-page .btn-ghost:hover{border-color:var(--ink-soft);}
 .rfq-page .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
