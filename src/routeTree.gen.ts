@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as BusinessModelRouteImport } from './routes/business-model'
 import { Route as CalculatorRouteImport } from './routes/calculator'
 import { Route as ClientsRouteImport } from './routes/clients'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CorporateOfficeRouteImport } from './routes/corporate-office'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as WarehousesRouteImport } from './routes/warehouses'
@@ -45,6 +46,11 @@ const CalculatorRoute = CalculatorRouteImport.update({
 const ClientsRoute = ClientsRouteImport.update({
   id: '/clients',
   path: '/clients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorporateOfficeRoute = CorporateOfficeRouteImport.update({
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/clients': typeof ClientsRoute
+  '/contact': typeof ContactRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
   '/warehouses': typeof WarehousesRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/clients': typeof ClientsRoute
+  '/contact': typeof ContactRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
   '/warehouses': typeof WarehousesRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/business-model': typeof BusinessModelRoute
   '/calculator': typeof CalculatorRoute
   '/clients': typeof ClientsRoute
+  '/contact': typeof ContactRoute
   '/corporate-office': typeof CorporateOfficeRoute
   '/testimonials': typeof TestimonialsRoute
   '/warehouses': typeof WarehousesRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/clients'
+    | '/contact'
     | '/corporate-office'
     | '/testimonials'
     | '/warehouses'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/clients'
+    | '/contact'
     | '/corporate-office'
     | '/testimonials'
     | '/warehouses'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/business-model'
     | '/calculator'
     | '/clients'
+    | '/contact'
     | '/corporate-office'
     | '/testimonials'
     | '/warehouses'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   BusinessModelRoute: typeof BusinessModelRoute
   CalculatorRoute: typeof CalculatorRoute
   ClientsRoute: typeof ClientsRoute
+  ContactRoute: typeof ContactRoute
   CorporateOfficeRoute: typeof CorporateOfficeRoute
   TestimonialsRoute: typeof TestimonialsRoute
   WarehousesRoute: typeof WarehousesRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/clients'
       fullPath: '/clients'
       preLoaderRoute: typeof ClientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/corporate-office': {
@@ -281,6 +301,7 @@ const rootRouteChildren: RootRouteChildren = {
   BusinessModelRoute: BusinessModelRoute,
   CalculatorRoute: CalculatorRoute,
   ClientsRoute: ClientsRoute,
+  ContactRoute: ContactRoute,
   CorporateOfficeRoute: CorporateOfficeRoute,
   TestimonialsRoute: TestimonialsRoute,
   WarehousesRoute: WarehousesRoute,
