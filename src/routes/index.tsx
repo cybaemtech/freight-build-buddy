@@ -141,8 +141,11 @@ function RFQBuilder() {
     <div className="rfq-page">
       <div className="wrap">
         <header className="brand">
-          <div className="mark">Request For Quotation [RFQ]</div>
-          <div className="tag">PACKAGING & FREIGHT RFQ BUILDER — VEVRA PACKAGING</div>
+          <img src={vevraLogo.url} alt="VEVRA Packaging Pvt. Ltd. logo" className="logo" />
+          <div className="brand-text">
+            <div className="mark">Request For Quotation [RFQ]</div>
+            <div className="tag">PACKAGING &amp; FREIGHT RFQ BUILDER — VEVRA PACKAGING</div>
+          </div>
         </header>
 
         <div className="rail">
