@@ -17,6 +17,7 @@ import {
   initialState,
   routeLabel,
 } from "@/lib/rfq-logic";
+import vevraLogo from "@/assets/vevra-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -141,8 +142,11 @@ function RFQBuilder() {
     <div className="rfq-page">
       <div className="wrap">
         <header className="brand">
-          <div className="mark">Request For Quotation [RFQ]</div>
-          <div className="tag">PACKAGING & FREIGHT RFQ BUILDER — VEVRA PACKAGING</div>
+          <img src={vevraLogo.url} alt="VEVRA Packaging Pvt. Ltd. logo" className="logo" />
+          <div className="brand-text">
+            <div className="mark">Request For Quotation [RFQ]</div>
+            <div className="tag">PACKAGING &amp; FREIGHT RFQ BUILDER — VEVRA PACKAGING</div>
+          </div>
         </header>
 
         <div className="rail">

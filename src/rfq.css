@@ -1,24 +1,22 @@
-/* CRATED — Packaging & Freight RFQ Builder design system (Cybaem Tech) */
+/* VEVRA PACKAGING — Packaging & Freight RFQ Builder design system */
 .rfq-page{
-  --bg:#221a10;
-  --bg2:#2c2216;
-  --surface:#f7f1e3;
-  --surface2:#eee2c8;
-  --ink:#241b10;
-  --ink-soft:#6a5a41;
-  --accent:#c1622e;
-  --accent-dark:#9a4c22;
-  --blue:#37647f;
-  --blue-soft:#dbe8ec;
-  --green:#4c6b47;
-  --line:#d8c8a2;
-  --danger:#a34430;
+  --bg:#ffffff;
+  --bg2:#ffffff;
+  --surface:#ffffff;
+  --surface2:#f4f7fb;
+  --ink:#12263f;
+  --ink-soft:#5b6b80;
+  --accent:#d81f26;
+  --accent-dark:#a8161c;
+  --blue:#1a4f9c;
+  --blue-soft:#e6eefa;
+  --green:#1a4f9c;
+  --line:#d8e0ea;
+  --danger:#d81f26;
   --rfq-radius:10px;
-  --rfq-shadow:0 10px 30px rgba(20,14,4,.28);
+  --rfq-shadow:0 8px 26px rgba(18,38,63,.10);
 
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 2px, transparent 2px 26px),
-    linear-gradient(180deg,#221a10 0%,#2c2216 100%);
+  background:#ffffff;
   color:var(--ink);
   font-family:'Inter',system-ui,sans-serif;
   min-height:100vh;
@@ -29,42 +27,43 @@
 .rfq-page .wrap{max-width:920px;margin:0 auto;}
 
 /* ---------- Header / brand mark ---------- */
-.rfq-page .brand{text-align:center;margin-bottom:22px;color:var(--surface);}
+.rfq-page .brand{
+  display:flex;align-items:center;gap:18px;margin-bottom:22px;color:var(--ink);
+  border-bottom:3px solid var(--accent);padding-bottom:16px;
+}
+.rfq-page .brand .logo{height:56px;width:auto;flex:none;}
+.rfq-page .brand .brand-text{text-align:left;}
 .rfq-page .brand .mark{
   font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:clamp(34px,6vw,52px);letter-spacing:6px;color:var(--surface);
-  position:relative;display:inline-block;padding:0 14px;
+  font-size:clamp(22px,3.6vw,34px);letter-spacing:2px;color:var(--accent);
+  display:block;
 }
-.rfq-page .brand .mark::before,.rfq-page .brand .mark::after{
-  content:"";position:absolute;top:50%;width:34px;height:1px;background:var(--accent);
-}
-.rfq-page .brand .mark::before{left:-40px;}
-.rfq-page .brand .mark::after{right:-40px;}
 .rfq-page .brand .tag{
-  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:3px;
-  text-transform:uppercase;color:#c7b998;margin-top:6px;
+  font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:2.4px;
+  text-transform:uppercase;color:var(--blue);margin-top:4px;font-weight:600;
 }
 
 /* ---------- Progress / dimension rail ---------- */
 .rfq-page .rail{display:flex;align-items:center;justify-content:space-between;margin:26px 0 24px;padding:0 4px;}
 .rfq-page .rail .tick{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
 .rfq-page .rail .tick .num{
-  width:28px;height:28px;border-radius:50%;border:1.5px solid #6b5a3d;color:#c7b998;
+  width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);color:var(--ink-soft);
   display:flex;align-items:center;justify-content:center;
-  font-family:'IBM Plex Mono',monospace;font-size:12px;background:transparent;
+  font-family:'IBM Plex Mono',monospace;font-size:12px;background:#fff;
   transition:all .25s ease;z-index:2;
 }
 .rfq-page .rail .tick .lbl{
-  font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:#8b7a5c;
+  font-size:9.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);
   margin-top:6px;text-align:center;font-family:'IBM Plex Mono',monospace;
 }
 .rfq-page .rail .tick::before{
-  content:"";position:absolute;top:14px;left:-50%;width:100%;height:1px;background:#57492f;z-index:1;
+  content:"";position:absolute;top:14px;left:-50%;width:100%;height:1px;background:var(--line);z-index:1;
 }
 .rfq-page .rail .tick:first-child::before{display:none;}
-.rfq-page .rail .tick.done .num{background:var(--accent);border-color:var(--accent);color:#fff;}
-.rfq-page .rail .tick.active .num{border-color:var(--accent);color:#fff;background:var(--accent-dark);box-shadow:0 0 0 4px rgba(193,98,46,.25);}
-.rfq-page .rail .tick.done .lbl,.rfq-page .rail .tick.active .lbl{color:var(--surface);}
+.rfq-page .rail .tick.done .num{background:var(--blue);border-color:var(--blue);color:#fff;}
+.rfq-page .rail .tick.active .num{border-color:var(--accent);color:#fff;background:var(--accent);box-shadow:0 0 0 4px rgba(216,31,38,.18);}
+.rfq-page .rail .tick.done .lbl{color:var(--blue);}
+.rfq-page .rail .tick.active .lbl{color:var(--accent);font-weight:700;}
 
 /* ---------- Card ---------- */
 .rfq-page .card{
@@ -83,7 +82,7 @@
 .rfq-page input[type=text],.rfq-page input[type=number],.rfq-page input[type=email],
 .rfq-page input[type=tel],.rfq-page select,.rfq-page textarea{
   width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:7px;
-  font-size:14.5px;font-family:'Inter',sans-serif;background:#fffdf8;color:var(--ink);transition:border .15s;
+  font-size:14.5px;font-family:'Inter',sans-serif;background:#ffffff;color:var(--ink);transition:border .15s;
 }
 .rfq-page textarea{resize:vertical;min-height:70px;}
 .rfq-page input:focus,.rfq-page select:focus,.rfq-page textarea:focus{outline:none;border-color:var(--accent);}
@@ -92,11 +91,11 @@
 .rfq-page .choice-row{display:flex;gap:10px;flex-wrap:wrap;}
 .rfq-page .choice{
   flex:1;min-width:110px;border:1.5px solid var(--line);border-radius:8px;padding:12px 10px;
-  text-align:center;cursor:pointer;background:#fffdf8;font-size:13.5px;font-weight:500;
+  text-align:center;cursor:pointer;background:#ffffff;font-size:13.5px;font-weight:500;
   transition:all .15s;user-select:none;
 }
 .rfq-page .choice:hover{border-color:var(--accent);}
-.rfq-page .choice.sel{border-color:var(--accent);background:var(--accent);color:#fff;box-shadow:0 4px 10px rgba(193,98,46,.3);}
+.rfq-page .choice.sel{border-color:var(--accent);background:var(--accent);color:#fff;box-shadow:0 4px 10px rgba(216,31,38,.28);}
 .rfq-page .choice .ic{display:block;font-size:20px;margin-bottom:4px;}
 
 .rfq-page .section-div{border:none;border-top:1px dashed var(--line);margin:26px 0;}
@@ -112,15 +111,15 @@
 .rfq-page .box-viz svg{display:block;margin:0 auto;max-width:100%;}
 .rfq-page .dim-label{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--blue);}
 .rfq-page .fit-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
-.rfq-page .fit-metric{background:#fffdf8;border:1px solid var(--line);border-radius:7px;padding:10px;text-align:center;}
+.rfq-page .fit-metric{background:#ffffff;border:1px solid var(--line);border-radius:7px;padding:10px;text-align:center;}
 .rfq-page .fit-metric .v{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;color:var(--accent-dark);}
 .rfq-page .fit-metric .l{font-size:10px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);margin-top:2px;}
 
 .rfq-page .box-pick{
   border:1.5px solid var(--line);border-radius:8px;padding:14px;margin-bottom:10px;cursor:pointer;
-  display:flex;justify-content:space-between;align-items:center;background:#fffdf8;
+  display:flex;justify-content:space-between;align-items:center;background:#ffffff;
 }
-.rfq-page .box-pick.sel{border-color:var(--green);background:#f2f6ef;}
+.rfq-page .box-pick.sel{border-color:var(--green);background:#e6eefa;}
 .rfq-page .box-pick .name{font-weight:600;font-size:14.5px;}
 .rfq-page .box-pick .dims{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
 .rfq-page .badge{font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:20px;font-weight:600;}
@@ -132,15 +131,15 @@
 .rfq-page .carrier-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .rfq-page .carrier-card{
   border:1.5px solid var(--line);border-radius:8px;padding:12px 14px;cursor:pointer;
-  background:#fffdf8;font-size:13.5px;font-weight:500;
+  background:#ffffff;font-size:13.5px;font-weight:500;
 }
-.rfq-page .carrier-card.sel{border-color:var(--accent);background:#fbeee3;}
+.rfq-page .carrier-card.sel{border-color:var(--accent);background:#fdecec;}
 
 .rfq-page .disclaimer{font-size:11.5px;color:var(--ink-soft);background:var(--blue-soft);border-radius:7px;padding:10px 12px;margin-top:14px;}
 
 /* ---------- Summary / RFQ ---------- */
 .rfq-page .rfq-id{
-  font-family:'IBM Plex Mono',monospace;background:var(--ink);color:var(--surface);
+  font-family:'IBM Plex Mono',monospace;background:var(--blue);color:#fff;
   padding:10px 16px;border-radius:7px;display:inline-block;font-size:14px;letter-spacing:1px;margin-bottom:18px;
 }
 .rfq-page .summary-block{margin-bottom:18px;}
@@ -159,7 +158,7 @@
 }
 .rfq-page .btn-primary{background:var(--accent);color:#fff;}
 .rfq-page .btn-primary:hover{background:var(--accent-dark);}
-.rfq-page .btn-primary:disabled{background:#c9bda3;cursor:not-allowed;}
+.rfq-page .btn-primary:disabled{background:#c3ccd8;cursor:not-allowed;}
 .rfq-page .btn-ghost{background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);}
 .rfq-page .btn-ghost:hover{border-color:var(--ink-soft);}
 .rfq-page .btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
