@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { PRODUCTS } from "@/lib/site-content";
 
-export const Route = createFileRoute("/products")({
+export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Industrial Packaging Products — Corrugation, Blister, Plywood | Vevra" },
