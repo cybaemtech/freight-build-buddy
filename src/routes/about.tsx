@@ -24,12 +24,6 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const VALUES = [
-  { title: "Performance", body: "Measured on damage rates, on-time delivery and cost per shipment." },
-  { title: "Integrity", body: "Transparent pricing, honest lead times and documented compliance." },
-  { title: "Professionalism", body: "Trained teams, structured account management and clear escalation." },
-];
-
 function AboutPage() {
   return (
     <SiteLayout>

@@ -163,7 +163,7 @@ function SiteFooter() {
           <div className="rounded-md bg-white p-3">
             <img src={vevraLogo.url} alt="Vevra Packaging logo" className="h-10 w-auto" />
           </div>
-          <p className="mt-4 text-sm text-white/85">{COMPANY.promise}</p>
+           <p className="mt-4 text-sm text-white/85">End-to-End Packaging &amp; Supply-Chain Solutions</p>
           <p className="text-sm italic text-white/70">{COMPANY.tagline}</p>
         </div>
         <div>
@@ -179,7 +179,7 @@ function SiteFooter() {
           </ul>
         </div>
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">Services</h3>
+           <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-white/70">Solutions</h3>
           <ul className="mt-3 space-y-1.5 text-sm">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -188,11 +188,8 @@ function SiteFooter() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link to="/business-model" className="hover:underline">
-                Business Model
-              </Link>
-            </li>
+             <li><Link to="/business-model" className="hover:underline">Pooling &amp; Rental</Link></li>
+             <li><Link to="/about" className="hover:underline">About VEVRA</Link></li>
             <li>
               <Link to="/testimonials" className="hover:underline">
                 Testimonials
