@@ -1,13 +1,10 @@
-import engineering from "@/assets/editorial/packaging-engineering.jpg.asset.json";
-import products from "@/assets/editorial/packaging-product-system.jpg.asset.json";
-import returnables from "@/assets/editorial/returnable-pooling.jpg.asset.json";
-import warehouse from "@/assets/editorial/warehouse-logistics.jpg.asset.json";
+import heroPackaging from "@/assets/hero-packaging.jpg";
 
 export const SITE_IMAGES = {
-  engineering: engineering.url,
-  products: products.url,
-  returnables: returnables.url,
-  warehouse: warehouse.url,
+  engineering: heroPackaging,
+  products: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+  returnables: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80",
+  warehouse: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80",
 } as const;
 
 export const PRODUCT_IMAGES: Record<string, string> = {

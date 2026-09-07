@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 
-import vevraLogo from "@/assets/vevra-logo.png.asset.json";
+import vevraLogo from "@/assets/vevra-logo.svg";
 import { COMPANY, PRODUCTS, SERVICES } from "@/lib/site-content";
 import { SITE_IMAGES } from "@/lib/site-images";
 
@@ -173,7 +173,7 @@ function SiteHeader() {
       <div className="mx-auto flex max-w-[1280px] items-center gap-6 px-6 py-3">
         <Link to="/" className="flex items-center">
           <img
-            src={vevraLogo.url}
+            src={vevraLogo}
             alt="Vevra Packaging Pvt. Ltd. logo"
             className={`w-auto transition-all ${scrolled ? "h-10" : "h-12"}`}
             width={180}
@@ -304,7 +304,7 @@ function SiteFooter() {
       <div className="mx-auto grid max-w-[1280px] gap-12 px-6 py-16 md:grid-cols-4">
         <div>
           <div className="inline-flex rounded-xl bg-white p-3">
-            <img src={vevraLogo.url} alt="Vevra Packaging logo" className="h-10 w-auto" />
+            <img src={vevraLogo} alt="Vevra Packaging logo" className="h-10 w-auto" />
           </div>
           <p className="mt-5 text-sm font-semibold text-white">End-to-End Packaging &amp; Supply-Chain Solutions</p>
           <p className="mt-1 text-sm text-white/60">{COMPANY.tagline}</p>
