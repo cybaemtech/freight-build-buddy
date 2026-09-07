@@ -6,13 +6,13 @@ import { COMPANY } from "@/lib/site-content";
 export const Route = createFileRoute("/corporate-office")({
   head: () => ({
     meta: [
-      { title: "Corporate Office — Vevra Packaging Pvt. Ltd., Pune" },
+      { title: "Corporate Office — VEVRA Packaging Pvt. Ltd., Pune" },
       {
         name: "description",
         content:
-          "Vevra Packaging corporate office at Gat No. 344, Village Kuruli, Tal. Khed, Dist. Pune 410 501, Maharashtra, India.",
+          "VEVRA Packaging Pvt. Ltd. corporate office at Gat No. 344, Village Kuruli, Tal. Khed, Dist. Pune 410 501, Maharashtra, India.",
       },
-      { property: "og:title", content: "Vevra Packaging Corporate Office" },
+      { property: "og:title", content: "VEVRA Packaging Corporate Office" },
       { property: "og:description", content: "Our registered corporate office in Pune, India." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -26,8 +26,8 @@ function CorporateOfficePage() {
     <SiteLayout>
       <PageHero
         eyebrow="Corporate office"
-        title="Vevra Packaging Pvt. Ltd."
-        body="Our corporate office and primary manufacturing campus sit in the Pune industrial belt, close to Chakan and Ranjangaon."
+        title="VEVRA Packaging Pvt. Ltd."
+        body="Our corporate office and manufacturing footprint support an evolving end-to-end packaging and supply-chain solutions business."
       />
       <Section>
         <div className="grid gap-8 md:grid-cols-2">

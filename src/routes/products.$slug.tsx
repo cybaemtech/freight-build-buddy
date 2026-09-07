@@ -12,15 +12,15 @@ export const Route = createFileRoute("/products/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Product unavailable | Vevra Packaging" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Product unavailable | VEVRA Packaging" }, { name: "robots", content: "noindex" }],
       };
     }
     const { product } = loaderData;
     return {
       meta: [
-        { title: `${product.name} Packaging | Vevra Packaging` },
+        { title: `${product.name} | VEVRA Packaging` },
         { name: "description", content: product.short },
-        { property: "og:title", content: `${product.name} — Vevra Packaging` },
+        { property: "og:title", content: `${product.name} — VEVRA Packaging` },
         { property: "og:description", content: product.short },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
@@ -34,9 +34,19 @@ function ProductDetail() {
   const { product } = Route.useLoaderData();
   return (
     <SiteLayout>
-      <PageHero eyebrow="Product" title={product.name} body={product.short} />
+      <PageHero eyebrow="Product capability" title={product.name} body={product.short} />
       <Section eyebrow="Overview" title={`${product.name} solutions`}>
         <p className="max-w-3xl text-muted-foreground">{product.intro}</p>
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          <div>
+            <h2 className="font-bold text-brand-blue-dark">What problem does it solve?</h2>
+            <p className="mt-2 text-sm text-muted-foreground">A packaging format selected around product protection, handling, storage, transit and the total cost of the packaging ecosystem.</p>
+          </div>
+          <div>
+            <h2 className="font-bold text-brand-blue-dark">Where is it used?</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Across manufacturing, industrial, automotive, consumer and export supply chains, with customization available for the application.</p>
+          </div>
+        </div>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {product.points.map((pt: string) => (
             <li key={pt} className="rounded-md border border-border border-l-4 border-l-brand px-4 py-3 text-sm">

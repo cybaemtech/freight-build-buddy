@@ -35,7 +35,7 @@ function BusinessModelPage() {
       <Section>
         <ol className="space-y-5">
           {BUSINESS_MODELS.map((b, i) => (
-            <li key={b.step} className="flex gap-5 rounded-lg border border-border p-6">
+            <li key={b.title} className="flex gap-5 rounded-lg border border-border p-6">
               <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
                 {String(i + 1).padStart(2, "0")}
               </span>

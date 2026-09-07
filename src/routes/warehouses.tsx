@@ -6,14 +6,14 @@ import { WAREHOUSES } from "@/lib/site-content";
 export const Route = createFileRoute("/warehouses")({
   head: () => ({
     meta: [
-      { title: "Warehouses — 11+ Locations, Pan India | Vevra Packaging" },
+      { title: "Warehouses — Closer to Your Operations | VEVRA" },
       {
         name: "description",
         content:
-          "Strategically located warehouses across India for better reach, faster delivery and efficient inventory management.",
+          "Explore VEVRA's warehouse and packaging-management footprint, designed to improve reach, availability and supply-chain visibility.",
       },
-      { property: "og:title", content: "Vevra Packaging Warehouses" },
-      { property: "og:description", content: "11+ warehouses with pan-India presence." },
+      { property: "og:title", content: "VEVRA Warehouses and Locations" },
+      { property: "og:description", content: "Closer to your operations. Closer to your customers." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,11 +26,12 @@ function WarehousesPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Warehouses"
-        title="11+ warehouses, pan-India presence"
-        body="Strategically located storage close to industrial clusters for better reach, faster delivery and efficient inventory management."
+        title="Closer to your operations. Closer to your customers."
+        body="VEVRA's locations support packaging inventory, returnable asset management, availability and coordinated supply-chain operations."
       />
       <Section>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <p className="max-w-3xl text-muted-foreground">Location details, warehouse type, capacity, products available, services supported, industries served and directions will be added as each site is validated.</p>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {WAREHOUSES.map((w) => (
             <li key={w} className="rounded-lg border border-border border-t-4 border-t-brand p-5 text-sm">
               {w}
