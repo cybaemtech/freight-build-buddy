@@ -68,7 +68,8 @@ function Showroom({ activeIndex, reducedMotion }: { activeIndex: number; reduced
     if (!group) return;
     const delta = Math.min(rawDelta, 0.05);
     const damping = 1 - Math.exp(-4.5 * delta);
-    group.position.x = THREE.MathUtils.lerp(group.position.x, -POSITIONS[activeIndex], damping);
+    const targetPosition = POSITIONS[activeIndex] ?? POSITIONS[0];
+    group.position.x = THREE.MathUtils.lerp(group.position.x, -targetPosition, damping);
     if (!reducedMotion) {
       group.rotation.y = THREE.MathUtils.lerp(group.rotation.y, state.pointer.x * 0.035, damping);
       group.rotation.x = THREE.MathUtils.lerp(group.rotation.x, -state.pointer.y * 0.018, damping);
