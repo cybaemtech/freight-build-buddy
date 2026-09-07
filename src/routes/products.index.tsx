@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { PRODUCTS } from "@/lib/site-content";
+import { PRODUCT_IMAGES } from "@/lib/site-images";
 
 export const Route = createFileRoute("/products/")({
   head: () => ({
@@ -39,8 +40,10 @@ function ProductsPage() {
               key={p.slug}
               className="lift arrow-move flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
             >
-              <div className="flex h-32 items-end bg-brand-blue-dark p-6">
-                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-soft/90">Capability</span>
+              <div className="relative h-44 overflow-hidden bg-brand-blue-dark">
+                <img src={PRODUCT_IMAGES[p.slug]} alt={p.name} className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" width={1536} height={1024} />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,var(--brand-blue-dark),transparent_65%)]" />
+                <span className="absolute bottom-5 left-6 text-[11px] font-bold uppercase tracking-[0.22em] text-white">Capability</span>
               </div>
               <div className="flex flex-1 flex-col p-7">
                 <h2 className="text-lg font-bold text-brand-blue-dark">{p.name}</h2>
