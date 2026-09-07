@@ -33,20 +33,26 @@ function ServicesPage() {
         body="From engineering and returnables to rental, pooling, on-site operations, logistics and warehouse management, VEVRA supports the full operating requirement."
       />
       <Section>
-        <div className="grid gap-6 md:grid-cols-3">
-          {SERVICES.map((s) => (
+        <div className="space-y-5">
+          {SERVICES.map((s, i) => (
             <article
               key={s.slug}
-              className="flex flex-col rounded-lg border border-border border-t-4 border-t-brand-blue p-6"
+              className="lift arrow-move grid gap-4 rounded-2xl border border-border bg-card p-7 md:grid-cols-[80px_1fr_auto] md:items-center"
             >
-              <h2 className="text-lg font-bold text-brand-blue-dark">{s.name}</h2>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{s.short}</p>
+              <span className="text-2xl font-extrabold text-brand/70">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h2 className="text-lg font-bold text-brand-blue-dark">{s.name}</h2>
+                <p className="mt-1.5 text-sm text-muted-foreground">{s.short}</p>
+                <p className="mt-3 text-xs uppercase tracking-[0.14em] text-brand-blue/70">
+                  {s.points.slice(0, 4).join(" • ")}
+                </p>
+              </div>
               <Link
                 to="/services/$slug"
                 params={{ slug: s.slug }}
-                className="mt-4 text-sm font-semibold uppercase tracking-wide text-brand hover:underline"
+                className="text-xs font-bold uppercase tracking-[0.16em] text-brand md:text-right"
               >
-                Learn more →
+                Explore service <span className="arrow">→</span>
               </Link>
             </article>
           ))}
