@@ -4,16 +4,43 @@ import { useEffect, useState, type ReactNode } from "react";
 import vevraLogo from "@/assets/vevra-logo.png.asset.json";
 import { COMPANY, PRODUCTS, SERVICES } from "@/lib/site-content";
 
-const NAV = [
+type NavChild = { to: string; params?: Record<string, string>; label: string; desc?: string };
+type NavItem = { to: string; label: string; children?: NavChild[]; columns?: 1 | 2 };
+
+const NAV: NavItem[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/products", label: "Products" },
-  { to: "/services", label: "Services" },
+  {
+    to: "/about",
+    label: "Company",
+    children: [
+      { to: "/about", label: "About VEVRA", desc: "Who we are and how we work" },
+      { to: "/corporate-office", label: "Corporate Office", desc: "Head office and reach" },
+      { to: "/warehouses", label: "Warehouses", desc: "Storage and distribution network" },
+      { to: "/clients", label: "Clients & Industries", desc: "Sectors we serve" },
+      { to: "/testimonials", label: "Customer Success", desc: "Challenge, solution, impact" },
+    ],
+  },
+  {
+    to: "/products",
+    label: "Products",
+    columns: 2,
+    children: [
+      { to: "/products", label: "All Products", desc: "Full packaging portfolio" },
+      ...PRODUCTS.map((p) => ({ to: "/products/$slug", params: { slug: p.slug }, label: p.name, desc: p.short })),
+    ],
+  },
+  {
+    to: "/services",
+    label: "Services",
+    columns: 2,
+    children: [
+      { to: "/services", label: "All Services", desc: "End-to-end managed packaging" },
+      ...SERVICES.map((s) => ({ to: "/services/$slug", params: { slug: s.slug }, label: s.name, desc: s.short })),
+    ],
+  },
   { to: "/business-model", label: "Business Model" },
-  { to: "/warehouses", label: "Warehouses" },
-  { to: "/clients", label: "Clients" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 export function RfqButton({
   variant = "primary",
