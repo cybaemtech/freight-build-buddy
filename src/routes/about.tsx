@@ -10,8 +10,9 @@ import {
 } from "lucide-react";
 
 import { PageHero, Section, SiteLayout } from "@/components/site/SiteLayout";
+import { WorldExpansionMap } from "@/components/site/WorldExpansionMap";
 import visionTeamImage from "@/assets/editorial/about-vision-team.jpg";
-import { ABOUT_VALUES, COMPANY, EVOLUTION, STATS, WAREHOUSES } from "@/lib/site-content";
+import { ABOUT_VALUES, EVOLUTION, STATS } from "@/lib/site-content";
 
 const VALUE_ICONS = [Handshake, ShieldCheck, Target, UsersRound, Medal];
 
@@ -180,18 +181,7 @@ function AboutPage() {
         </dl>
       </Section>
 
-      <Section eyebrow="Manufacturing units & warehouses" title="Pan-India presence">
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {WAREHOUSES.map((w) => (
-            <li key={w} className="rounded-md border border-border px-4 py-3 text-sm">
-              {w}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm text-muted-foreground">
-          Corporate office: {COMPANY.address}
-        </p>
-      </Section>
+      <WorldExpansionMap />
     </SiteLayout>
   );
 }
