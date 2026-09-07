@@ -2,7 +2,6 @@ import { ClientOnly, Link } from "@tanstack/react-router";
 import { ArrowRight, Box, ChevronLeft, ChevronRight, Layers3, PackageCheck, Truck } from "lucide-react";
 import { lazy, Suspense, useState } from "react";
 
-import heroImage from "@/assets/hero-packaging.jpg";
 import { Button } from "@/components/ui/button";
 import { RfqButton } from "@/components/site/SiteLayout";
 import { STATS } from "@/lib/site-content";
@@ -50,13 +49,7 @@ const SHOWCASE = [
 
 function HeroFallback() {
   return (
-    <img
-      src={heroImage}
-      alt="Engineered returnable packaging systems in a VEVRA manufacturing environment"
-      className="h-full w-full object-cover opacity-55"
-      width={1280}
-      height={1024}
-    />
+    <div className="h-full w-full bg-brand-blue-dark" aria-label="Loading the VEVRA packaging systems display" />
   );
 }
 
@@ -72,13 +65,13 @@ export function ImmersiveHero() {
 
   return (
     <section className="relative min-h-[calc(100svh-72px)] overflow-hidden bg-brand-blue-dark text-white lg:min-h-[720px]">
-      <div className="absolute inset-0 lg:left-[39%]">
+      <div className="absolute inset-0 top-[300px] sm:top-[270px] lg:left-[39%] lg:top-0">
         <ClientOnly fallback={<HeroFallback />}>
           <Suspense fallback={<HeroFallback />}>
             <VevraHeroScene activeIndex={activeIndex} />
           </Suspense>
         </ClientOnly>
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,var(--brand-blue-dark)_0%,color-mix(in_oklab,var(--brand-blue-dark)_88%,transparent)_22%,transparent_58%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,var(--brand-blue-dark)_0%,transparent_55%)] lg:bg-[linear-gradient(90deg,var(--brand-blue-dark)_0%,color-mix(in_oklab,var(--brand-blue-dark)_88%,transparent)_22%,transparent_58%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,var(--brand-blue-dark),transparent)]" />
       </div>
 
@@ -106,7 +99,7 @@ export function ImmersiveHero() {
           </div>
         </div>
 
-        <div className="mt-auto pt-32 lg:pt-16">
+        <div className="mt-auto pt-[340px] sm:pt-[360px] lg:pt-16">
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_430px] lg:items-end">
             <div className="pointer-events-auto">
               <div className="mb-3 flex items-center justify-between lg:max-w-[720px]">
