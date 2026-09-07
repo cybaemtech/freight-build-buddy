@@ -16,6 +16,7 @@ import {
   STATS,
   VALUE_OUTCOMES,
 } from "@/lib/site-content";
+import { PRODUCT_IMAGES, SERVICE_IMAGES } from "@/lib/site-images";
 
 const ECOSYSTEM = [
   "Design",
@@ -117,13 +118,16 @@ function HomePage() {
               key={p.slug}
               to="/products/$slug"
               params={{ slug: p.slug }}
-              className="lift arrow-move flex flex-col rounded-2xl border border-border bg-card p-7"
+              className="lift arrow-move flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
             >
-              <h3 className="text-lg font-bold text-brand-blue-dark">{p.name}</h3>
-              <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.short}</p>
-              <span className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand">
-                Explore <span className="arrow">→</span>
-              </span>
+              <img src={PRODUCT_IMAGES[p.slug]} alt={p.name} className="h-44 w-full object-cover" loading="lazy" width={1536} height={1024} />
+              <div className="flex flex-1 flex-col p-7">
+                <h3 className="text-lg font-bold text-brand-blue-dark">{p.name}</h3>
+                <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.short}</p>
+                <span className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                  Explore <span className="arrow">→</span>
+                </span>
+              </div>
             </Link>
           ))}
         </div>
@@ -141,17 +145,18 @@ function HomePage() {
               key={s.slug}
               to="/services/$slug"
               params={{ slug: s.slug }}
-              className="lift arrow-move grid gap-4 rounded-2xl border border-border bg-card p-7 md:grid-cols-[80px_1fr_auto] md:items-center"
+              className="lift arrow-move grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-[160px_80px_1fr_auto] md:items-center"
             >
-              <span className="text-2xl font-extrabold text-brand/70">{String(i + 1).padStart(2, "0")}</span>
-              <div>
+              <img src={SERVICE_IMAGES[s.slug]} alt={s.name} className="h-40 w-full object-cover md:h-full" loading="lazy" width={1536} height={1024} />
+              <span className="px-7 text-2xl font-extrabold text-brand/70 md:px-0">{String(i + 1).padStart(2, "0")}</span>
+              <div className="px-7 pb-2 md:px-0 md:py-7">
                 <h3 className="text-lg font-bold text-brand-blue-dark">{s.name}</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.short}</p>
                 <p className="mt-3 text-xs uppercase tracking-[0.14em] text-brand-blue/70">
                   {s.points.slice(0, 4).join(" • ")}
                 </p>
               </div>
-              <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand md:text-right">
+              <span className="px-7 pb-7 text-xs font-bold uppercase tracking-[0.16em] text-brand md:px-7 md:py-7 md:text-right">
                 Explore service <span className="arrow">→</span>
               </span>
             </Link>
