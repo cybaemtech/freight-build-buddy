@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  ArrowRight,
   Eye,
   Handshake,
   Medal,
@@ -157,16 +158,55 @@ function AboutPage() {
         </div>
       </section>
 
-      <Section eyebrow="Evolution" title="Built through experience. Driven by evolution." tint>
-        <div className="flex flex-wrap items-center gap-2">
-          {EVOLUTION.map((step, index) => (
-            <div key={step} className="flex items-center gap-2">
-              <span className="rounded-md bg-card px-3 py-2 text-sm font-semibold text-brand-blue-dark shadow-sm">{step}</span>
-              {index < EVOLUTION.length - 1 ? <span className="text-brand">→</span> : null}
+      <section className="evolution-stage" aria-labelledby="evolution-heading">
+        <div className="evolution-watermark" aria-hidden="true">EVOLUTION</div>
+        <div className="evolution-scan" aria-hidden="true" />
+        <div className="relative mx-auto max-w-[1280px] px-6 py-24 lg:py-32">
+          <div className="evolution-intro">
+            <div>
+              <p className="evolution-eyebrow">Our evolution</p>
+              <h2 id="evolution-heading" className="mt-4 max-w-3xl text-4xl font-extrabold leading-tight text-primary-foreground sm:text-5xl lg:text-6xl">
+                Built through experience.<br /><span>Driven by evolution.</span>
+              </h2>
             </div>
-          ))}
+            <p className="max-w-md text-base leading-relaxed text-primary-foreground/70">
+              From making packaging products to managing complete packaging ecosystems—each capability builds on the one before it.
+            </p>
+          </div>
+
+          <div className="evolution-journey mt-20">
+            <div className="evolution-rail" aria-hidden="true">
+              <span className="evolution-rail-progress" />
+            </div>
+            <ol className="evolution-grid">
+              {EVOLUTION.map((step, index) => (
+                <li
+                  key={step}
+                  className="evolution-step"
+                  style={{ "--evolution-index": index } as React.CSSProperties}
+                >
+                  <div className="evolution-node" aria-hidden="true">
+                    <span />
+                  </div>
+                  <div className="evolution-card">
+                    <span className="evolution-number">{String(index + 1).padStart(2, "0")}</span>
+                    <h3>{step}</h3>
+                    {index < EVOLUTION.length - 1 ? <ArrowRight className="evolution-arrow" aria-hidden="true" /> : <span className="evolution-current">Now</span>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div className="evolution-outcome">
+            <span>Products</span>
+            <ArrowRight aria-hidden="true" />
+            <span>Solutions</span>
+            <ArrowRight aria-hidden="true" />
+            <strong>Managed ecosystems</strong>
+          </div>
         </div>
-      </Section>
+      </section>
 
       <Section eyebrow="Validated proof" title="Experience you can verify" tint>
         <dl className="grid grid-cols-2 gap-6 md:grid-cols-5">
