@@ -13,7 +13,7 @@ export const Route = createFileRoute("/services/$slug")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Service unavailable | Vevra Packaging" },
+          { title: "Service unavailable | VEVRA Packaging" },
           { name: "robots", content: "noindex" },
         ],
       };
@@ -21,9 +21,9 @@ export const Route = createFileRoute("/services/$slug")({
     const { service } = loaderData;
     return {
       meta: [
-        { title: `${service.name} | Vevra Packaging` },
+        { title: `${service.name} | VEVRA Packaging` },
         { name: "description", content: service.short },
-        { property: "og:title", content: `${service.name} — Vevra Packaging` },
+        { property: "og:title", content: `${service.name} — VEVRA Packaging` },
         { property: "og:description", content: service.short },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
@@ -37,8 +37,8 @@ function ServiceDetail() {
   const { service } = Route.useLoaderData();
   return (
     <SiteLayout>
-      <PageHero eyebrow="Service" title={service.name} body={service.short} />
-      <Section eyebrow="Overview" title="What this segment covers">
+      <PageHero eyebrow="Service capability" title={service.name} body={service.short} />
+      <Section eyebrow="Overview" title="What this service covers">
         <p className="max-w-3xl text-muted-foreground">{service.intro}</p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {service.points.map((pt: string) => (

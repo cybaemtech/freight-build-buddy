@@ -6,16 +6,16 @@ import { SERVICES } from "@/lib/site-content";
 export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
-      { title: "Services — Rental, Packaging & Transport | Vevra Packaging" },
+      { title: "Services — We Manage the Packaging Ecosystem | VEVRA" },
       {
         name: "description",
         content:
-          "Industrial rental service, industrial packaging products and industrial transport service — three integrated segments covering your full packaging supply chain.",
+          "Packaging engineering, returnables, rental, pooling, on-site operations, logistics and warehouse management from one accountable partner.",
       },
-      { property: "og:title", content: "Vevra Packaging Services" },
+      { property: "og:title", content: "VEVRA Packaging Services" },
       {
         property: "og:description",
-        content: "Rental, packaging and transport services delivered pan-India.",
+        content: "Beyond packaging: VEVRA manages the packaging ecosystem around your product and supply chain.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -29,8 +29,8 @@ function ServicesPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Services"
-        title="Three segments, one accountable partner"
-        body="Rent returnable assets, buy engineered packaging, and move it all with our pan-India transport network."
+        title="Beyond packaging. We manage the packaging ecosystem."
+        body="From engineering and returnables to rental, pooling, on-site operations, logistics and warehouse management, VEVRA supports the full operating requirement."
       />
       <Section>
         <div className="grid gap-6 md:grid-cols-3">

@@ -6,14 +6,14 @@ import { COMPANY } from "@/lib/site-content";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Vevra Packaging — Enquiries & Service Requests" },
+      { title: "Contact VEVRA — Solve Your Packaging Challenge" },
       {
         name: "description",
         content:
-          "Service requests, general enquiries, sales enquiries and partnership opportunities. Call +91 8484853484 or email info@vevrapackaging.com.",
+          "Tell VEVRA what you manufacture, move or store. Start a meaningful packaging requirement or generate a complete RFQ.",
       },
-      { property: "og:title", content: "Contact Vevra Packaging" },
-      { property: "og:description", content: "Reach our Pune corporate office, Mon–Sat 10:00am–7:00pm." },
+      { property: "og:title", content: "Contact VEVRA Packaging" },
+      { property: "og:description", content: "Let's solve your packaging challenge." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -33,8 +33,8 @@ function ContactPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Contact"
-        title="Let's talk packaging"
-        body="Tell us what you ship and how it moves — or send a complete RFQ in minutes using our quick RFQ builder."
+        title="Let's solve your packaging challenge."
+        body="Tell us what you manufacture, move or store. Capture the requirement with the quick RFQ builder and help our team understand the opportunity from the beginning."
       />
       <Section>
         <div className="grid gap-8 lg:grid-cols-3">
@@ -59,7 +59,7 @@ function ContactPage() {
             <p className="mt-3 text-sm text-muted-foreground">{COMPANY.address}</p>
           </div>
           <div className="rounded-lg border border-border border-t-4 border-t-brand-blue p-7">
-            <h2 className="text-lg font-bold text-brand-blue-dark">We can help with</h2>
+            <h2 className="text-lg font-bold text-brand-blue-dark">Start with your requirement</h2>
             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
               {REASONS.map((r) => (
                 <li key={r}>· {r}</li>

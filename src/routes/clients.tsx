@@ -6,14 +6,14 @@ import { CLIENTS } from "@/lib/site-content";
 export const Route = createFileRoute("/clients")({
   head: () => ({
     meta: [
-      { title: "Clients — Industries We Serve | Vevra Packaging" },
+      { title: "Clients — Trusted Where Packaging Cannot Fail | VEVRA" },
       {
         name: "description",
         content:
-          "Trusted by automotive OEMs, tier-1 suppliers, engineering, FMCG, electronics, pharma and export houses across India.",
+          "VEVRA supports packaging challenges across automotive, engineering, industrial manufacturing, FMCG, electronics, agriculture and emerging industries.",
       },
-      { property: "og:title", content: "Vevra Packaging Clients" },
-      { property: "og:description", content: "Long term relationships built on trust across industries." },
+      { property: "og:title", content: "VEVRA Clients and Industries" },
+      { property: "og:description", content: "Trusted where packaging cannot fail." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -26,11 +26,12 @@ function ClientsPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Clients"
-        title="Trusted by leaders across industries"
-        body="Long term relationships built on trust — from single-plant manufacturers to multi-site global groups."
+        title="Trusted where packaging cannot fail."
+        body="VEVRA works with businesses that need packaging to protect products, support operations and keep supply chains moving."
       />
       <Section>
-        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <p className="max-w-3xl text-muted-foreground">Customer stories will be presented as Industry → Customer → Challenge → VEVRA Solution → Outcome, with real testimonials and implementation proof wherever publication approval is available.</p>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CLIENTS.map((c) => (
             <li
               key={c}

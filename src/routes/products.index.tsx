@@ -6,16 +6,16 @@ import { PRODUCTS } from "@/lib/site-content";
 export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
-      { title: "Industrial Packaging Products — Corrugation, Blister, Plywood | Vevra" },
+      { title: "Products — Packaging Engineered Around Your Product | VEVRA" },
       {
         name: "description",
         content:
-          "Corrugation, blister, plastic parts, metal trollies, racking systems and plywood packaging engineered for industrial storage, handling and export.",
+          "Explore VEVRA's corrugated, plastic, metal, wood, protective, identification and customized packaging capabilities.",
       },
-      { property: "og:title", content: "Vevra Packaging Products" },
+      { property: "og:title", content: "VEVRA Packaging Products" },
       {
         property: "og:description",
-        content: "Six product families engineered for industrial storage, handling and export.",
+        content: "Packaging formats selected around your product, process, application and supply-chain requirement.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -30,7 +30,7 @@ function ProductsPage() {
       <PageHero
         eyebrow="Products"
         title="Packaging engineered around your product"
-        body="Six product families, designed in-house and manufactured across four units — built to the exact load, stack height and transit profile of your shipment."
+        body="From expendable packaging to engineered returnable systems, VEVRA offers multiple formats based on the product, process, application and supply-chain requirement."
       />
       <Section>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
