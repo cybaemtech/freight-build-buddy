@@ -1,18 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import heroImage from "@/assets/hero-packaging.jpg";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
+  BUSINESS_MODELS,
+  CLIENTS,
   COMMITMENTS,
   COMPANY,
   CUSTOMER_PROBLEMS,
   CUSTOMER_SUCCESS_PROCESS,
+  EVOLUTION,
   FUTURE_DIRECTIONS,
   PRODUCTS,
   SERVICES,
   STATS,
-  TESTIMONIALS,
   VALUE_OUTCOMES,
 } from "@/lib/site-content";
+
+const ECOSYSTEM = [
+  "Design",
+  "Engineer",
+  "Manufacture",
+  "Supply",
+  "Store",
+  "Track",
+  "Return",
+  "Reuse",
+  "Optimize",
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,69 +46,279 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <SiteLayout>
-      <section className="border-b-4 border-brand bg-brand-blue-dark text-white">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-brand-blue-dark text-white">
+        <div className="pointer-events-none absolute -right-40 top-[-10rem] h-[28rem] w-[28rem] rounded-full bg-brand/20 blur-3xl" />
+        <div className="mx-auto grid max-w-[1280px] items-center gap-14 px-6 py-20 lg:grid-cols-[1.05fr_1fr] lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">Sustainable · Reliable · Cost optimized</p>
-            <h1 className="mt-4 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">End-to-End Packaging Solutions That Keep Your Supply Chain Moving</h1>
-            <p className="mt-5 max-w-2xl text-white/80">From packaging design and engineering to manufacturing, returnable packaging, rental, warehousing and logistics support — VEVRA helps businesses simplify packaging, improve operational efficiency and optimize the total cost of their packaging ecosystem.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-brand-soft/90">
+              Sustainable · Reliable · Cost optimized
+            </p>
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-[3.4rem]">
+              End-to-End Packaging Solutions That Keep Your Supply Chain Moving
+            </h1>
+            <p className="mt-6 max-w-xl text-white/75">
+              From packaging design and engineering to manufacturing, returnable packaging, rental,
+              warehousing and logistics support — VEVRA takes ownership of the packaging ecosystem
+              around your product.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
               <RfqButton />
-              <Link to="/products" className="inline-flex items-center rounded-md border-2 border-white/60 px-5 py-2.5 text-sm font-semibold uppercase tracking-wide transition-colors hover:bg-white hover:text-brand-blue-dark">Explore solutions</Link>
+              <Link
+                to="/services"
+                className="arrow-move inline-flex items-center gap-2 rounded-xl border border-white/40 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-white hover:text-brand-blue-dark"
+              >
+                Explore solutions <span className="arrow">→</span>
+              </Link>
             </div>
           </div>
-          <div className="rounded-lg border border-white/20 bg-white/5 p-6">
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-white/70">Proof panel</h2>
-            <dl className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-2">
-              {STATS.map((s) => <div key={s.label}><dt className="text-3xl font-bold text-white">{s.value}</dt><dd className="text-xs uppercase tracking-wide text-white/70">{s.label}</dd></div>)}
-            </dl>
-            <p className="mt-5 text-xs text-white/50">* Numerical claims to be validated by VEVRA before publication.</p>
+          <div className="relative">
+            <div className="overflow-hidden rounded-2xl border border-white/10">
+              <img
+                src={heroImage}
+                alt="Engineered returnable packaging crates and metal racks in a modern manufacturing plant"
+                width={1280}
+                height={1024}
+                className="h-full w-full object-cover"
+              />
+            </div>
           </div>
+        </div>
+        <div className="border-t border-white/10">
+          <dl className="mx-auto grid max-w-[1280px] grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-3 lg:grid-cols-5">
+            {STATS.map((s) => (
+              <div key={s.label}>
+                <dt className="text-3xl font-extrabold text-white">{s.value}</dt>
+                <dd className="mt-1 text-[11px] uppercase tracking-[0.16em] text-white/55">{s.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      <Section eyebrow="The customer promise" title="Packaging is our business. Your product is yours.">
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr]">
-          <p className="text-lg text-muted-foreground">Your business should not have to spend valuable time managing packaging complexity. VEVRA takes ownership of the packaging ecosystem around your product — from understanding the requirement and designing the right solution to manufacturing, supplying, managing and optimizing it.</p>
-          <div className="grid gap-5 md:grid-cols-3">{COMMITMENTS.map((item) => <div key={item.title} className="rounded-lg border border-border border-t-4 border-t-brand p-5"><h3 className="font-bold text-brand-blue-dark">{item.title}</h3><p className="mt-2 text-sm text-muted-foreground">{item.body}</p></div>)}</div>
+      {/* ECOSYSTEM */}
+      <Section
+        eyebrow="One partner"
+        title="One partner. One packaging ecosystem."
+        lead="Your business should not have to manage packaging complexity across multiple vendors. VEVRA connects every stage of the packaging lifecycle into a single managed system."
+      >
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-4">
+          {ECOSYSTEM.map((node, i) => (
+            <div key={node} className="flex items-center gap-2">
+              <span className="lift inline-flex items-center rounded-full border border-brand-blue/15 bg-card px-5 py-3 text-sm font-semibold text-brand-blue-dark">
+                <span className="mr-2 text-xs font-bold text-brand">{String(i + 1).padStart(2, "0")}</span>
+                {node}
+              </span>
+              {i < ECOSYSTEM.length - 1 ? <span className="text-brand/50">—</span> : null}
+            </div>
+          ))}
         </div>
-        <p className="mt-8 text-xl font-bold text-brand-blue-dark">You focus on what you manufacture. We take care of how it moves.</p>
-      </Section>
-
-      <Section eyebrow="Capabilities" title="One partner. Multiple packaging capabilities." tint>
-        <div className="grid gap-8 md:grid-cols-2">
-          <div><h3 className="text-sm font-bold uppercase tracking-wide text-brand">Product capabilities</h3><div className="mt-4 flex flex-wrap gap-2">{PRODUCTS.map((p) => <Link key={p.slug} to="/products/$slug" params={{ slug: p.slug }} className="rounded-md border border-border bg-card px-3 py-2 text-sm text-brand-blue-dark hover:border-brand">{p.name}</Link>)}</div></div>
-          <div><h3 className="text-sm font-bold uppercase tracking-wide text-brand">Service capabilities</h3><div className="mt-4 flex flex-wrap gap-2">{SERVICES.map((s) => <Link key={s.slug} to="/services/$slug" params={{ slug: s.slug }} className="rounded-md border border-border bg-card px-3 py-2 text-sm text-brand-blue-dark hover:border-brand">{s.name}</Link>)}</div></div>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {COMMITMENTS.map((item) => (
+            <div key={item.title} className="lift rounded-2xl border border-border bg-card p-7">
+              <span className="inline-block h-1 w-10 rounded bg-brand" />
+              <h3 className="mt-5 text-lg font-bold text-brand-blue-dark">{item.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+            </div>
+          ))}
         </div>
       </Section>
 
-      <Section eyebrow="Start with the problem" title="What packaging problem are you trying to solve?">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-5">{CUSTOMER_PROBLEMS.map((problem) => <div key={problem.title} className="flex flex-col rounded-lg border border-border p-5"><h3 className="font-bold text-brand-blue-dark">{problem.title}</h3><p className="mt-2 flex-1 text-sm text-muted-foreground">{problem.body}</p><span className="mt-4 text-xs font-semibold uppercase tracking-wide text-brand">{problem.action} →</span></div>)}</div>
+      {/* PROBLEMS */}
+      <Section
+        eyebrow="Start with the problem"
+        title="What packaging challenge are you trying to solve?"
+        lead="We don't ask which product you want. We ask what problem needs solving — then take ownership of it."
+        tint
+      >
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {CUSTOMER_PROBLEMS.map((problem) => (
+            <Link
+              key={problem.title}
+              to="/services"
+              className="lift arrow-move group flex flex-col rounded-2xl border border-border bg-card p-7"
+            >
+              <h3 className="text-lg font-bold text-brand-blue-dark">{problem.title}</h3>
+              <p className="mt-3 flex-1 text-sm text-muted-foreground">{problem.body}</p>
+              <p className="mt-4 max-h-0 overflow-hidden text-sm text-muted-foreground opacity-0 transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100">
+                <span className="font-semibold text-brand-blue-dark">VEVRA solution: </span>
+                packaging engineering, standardization, returnable and rental models, and managed
+                optimization across the ecosystem.
+              </p>
+              <span className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                {problem.action} <span className="arrow">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
       </Section>
 
-      <Section eyebrow="Business value" title="From packaging cost to business value" tint>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">{VALUE_OUTCOMES.map((outcome) => <div key={outcome.title} className="rounded-lg bg-card p-6 shadow-sm"><h3 className="text-lg font-bold text-brand-blue-dark">{outcome.title}</h3><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{outcome.items.map((item) => <li key={item}>• {item}</li>)}</ul></div>)}</div>
+      {/* PRODUCTS */}
+      <Section
+        eyebrow="Packaging capabilities"
+        title="Explore our packaging"
+        lead="Engineered formats across corrugated, plastic, metal, wood, protective packaging and identification."
+      >
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {PRODUCTS.map((p) => (
+            <Link
+              key={p.slug}
+              to="/products/$slug"
+              params={{ slug: p.slug }}
+              className="lift arrow-move flex flex-col rounded-2xl border border-border bg-card p-7"
+            >
+              <h3 className="text-lg font-bold text-brand-blue-dark">{p.name}</h3>
+              <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.short}</p>
+              <span className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                Explore <span className="arrow">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
       </Section>
 
-      <Section eyebrow="Our method" title="How VEVRA creates customer success">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{CUSTOMER_SUCCESS_PROCESS.map(([number, title, body]) => <div key={number} className="rounded-lg border border-border p-5"><span className="text-sm font-bold text-brand">{number}</span><h3 className="mt-3 font-bold text-brand-blue-dark">{title}</h3><p className="mt-2 text-sm text-muted-foreground">{body}</p></div>)}</div>
+      {/* SERVICES */}
+      <Section
+        eyebrow="Services"
+        title="Packaging managed as a system, not a purchase order."
+        tint
+      >
+        <div className="space-y-5">
+          {SERVICES.map((s, i) => (
+            <Link
+              key={s.slug}
+              to="/services/$slug"
+              params={{ slug: s.slug }}
+              className="lift arrow-move grid gap-4 rounded-2xl border border-border bg-card p-7 md:grid-cols-[80px_1fr_auto] md:items-center"
+            >
+              <span className="text-2xl font-extrabold text-brand/70">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 className="text-lg font-bold text-brand-blue-dark">{s.name}</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">{s.short}</p>
+                <p className="mt-3 text-xs uppercase tracking-[0.14em] text-brand-blue/70">
+                  {s.points.slice(0, 4).join(" • ")}
+                </p>
+              </div>
+              <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand md:text-right">
+                Explore service <span className="arrow">→</span>
+              </span>
+            </Link>
+          ))}
+        </div>
       </Section>
 
-      <Section eyebrow="Customer proof" title="Customer success is our measure of success." tint>
-        <p className="max-w-3xl text-muted-foreground">If our customer wins, we win. We will publish customer challenge, VEVRA intervention, solution, business impact and an approved customer voice as real evidence becomes available.</p>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">{TESTIMONIALS.map((t) => <blockquote key={t.name + t.org} className="rounded-lg bg-card p-6 shadow-sm"><p className="text-sm text-foreground">“{t.quote}”</p><footer className="mt-4 text-xs uppercase tracking-wide text-brand">{t.name} · {t.org}</footer></blockquote>)}</div>
+      {/* BUSINESS MODELS */}
+      <Section
+        eyebrow="Business models"
+        title="Choose the right packaging model."
+        lead="Own it, rent it, pool it — or let VEVRA manage the entire ecosystem end to end."
+      >
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {BUSINESS_MODELS.map((m) => (
+            <div key={m.title} className="lift rounded-2xl border border-border bg-card p-7">
+              <h3 className="text-lg font-bold text-brand-blue-dark">{m.title}</h3>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand">{m.flow}</p>
+              <p className="mt-3 text-sm text-muted-foreground">{m.body}</p>
+            </div>
+          ))}
+        </div>
+        <Link
+          to="/business-model"
+          className="arrow-move mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-brand"
+        >
+          Compare all models <span className="arrow">→</span>
+        </Link>
       </Section>
 
-      <Section eyebrow="Evolution" title="Built through experience. Driven by evolution.">
-        <p className="max-w-3xl text-muted-foreground">VEVRA did not arrive at today&apos;s business model overnight. It evolved by listening to customers and solving increasingly complex problems.</p>
-        <div className="mt-8 flex flex-wrap items-center gap-2">{["Packaging Products", "Returnable Packaging", "Packaging Rental", "PP / Plastic Solutions", "Packaging Engineering", "On-Site Operations", "Warehouse & Logistics", "End-to-End Management"].map((step, index) => <div key={step} className="flex items-center gap-2"><span className="rounded-md border border-brand-blue px-3 py-2 text-sm font-semibold text-brand-blue-dark">{step}</span>{index < 7 ? <span className="text-brand">→</span> : null}</div>)}</div>
+      {/* VALUE OUTCOMES */}
+      <Section eyebrow="Business value" title="From packaging cost to business value" dark>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {VALUE_OUTCOMES.map((outcome) => (
+            <div key={outcome.title} className="rounded-2xl border border-white/10 bg-white/5 p-7">
+              <h3 className="text-lg font-bold text-white">{outcome.title}</h3>
+              <ul className="mt-4 space-y-2 text-sm text-white/70">
+                {outcome.items.map((item) => (
+                  <li key={item} className="flex gap-2">
+                    <span className="text-brand-soft">—</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </Section>
 
-      <Section eyebrow="The next chapter" title="Ready for the next chapter of supply chains?" tint>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">{FUTURE_DIRECTIONS.map((item) => <div key={item.title} className="rounded-lg bg-card p-6 shadow-sm"><h3 className="font-bold text-brand-blue-dark">{item.title}</h3><p className="mt-2 text-sm text-muted-foreground">{item.body}</p></div>)}</div>
+      {/* CUSTOMER SUCCESS */}
+      <Section
+        eyebrow="Customer success"
+        title="If our customer wins, we win."
+        lead="Every engagement follows the same disciplined path — challenge, solution, business impact. Percentages and named customer stories are published only after VEVRA and the customer validate them."
+        tint
+      >
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CUSTOMER_SUCCESS_PROCESS.map(([number, title, body]) => (
+            <div key={number} className="rounded-2xl border border-border bg-card p-6">
+              <span className="text-xs font-bold text-brand">{number}</span>
+              <h3 className="mt-3 font-bold text-brand-blue-dark">{title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{body}</p>
+            </div>
+          ))}
+        </div>
       </Section>
 
-      <section className="bg-brand py-14 text-white"><div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-5 md:flex-row md:items-center md:justify-between"><div><h2 className="text-2xl font-bold">Have a packaging challenge? Let&apos;s solve it.</h2><p className="mt-2 text-white/85">Tell us what you manufacture, move or store. Our team will help identify the right packaging, service or end-to-end solution. Or call {COMPANY.phone}.</p></div><RfqButton variant="secondary" label="Generate My RFQ" className="border-white text-white hover:bg-white hover:text-brand" /></div></section>
+      {/* INDUSTRIES */}
+      <Section eyebrow="Industries" title="Trusted where packaging can't fail.">
+        <div className="flex flex-wrap gap-3">
+          {CLIENTS.map((industry) => (
+            <span
+              key={industry}
+              className="rounded-full border border-brand-blue/15 px-5 py-2.5 text-sm font-semibold text-brand-blue-dark"
+            >
+              {industry}
+            </span>
+          ))}
+        </div>
+      </Section>
+
+      {/* EVOLUTION */}
+      <Section eyebrow="Evolution" title="From packaging products to packaging partnership." tint>
+        <ol className="relative space-y-6 border-l-2 border-brand/25 pl-8">
+          {EVOLUTION.map((step) => (
+            <li key={step} className="relative">
+              <span className="absolute -left-[41px] top-1.5 h-3 w-3 rounded-full bg-brand" />
+              <p className="text-base font-bold text-brand-blue-dark">{step}</p>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-6 text-xs text-muted-foreground">* Dates and milestones to be confirmed by VEVRA before publication.</p>
+      </Section>
+
+      {/* FUTURE */}
+      <Section eyebrow="The next chapter" title="Ready for the next chapter of supply chains?">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {FUTURE_DIRECTIONS.map((item) => (
+            <div key={item.title} className="lift rounded-2xl border border-border bg-card p-7">
+              <h3 className="font-bold text-brand-blue-dark">{item.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* FINAL CTA */}
+      <section className="bg-brand-blue-dark py-16 text-white">
+        <div className="mx-auto flex max-w-[1280px] flex-col items-start gap-6 px-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 className="text-3xl font-extrabold tracking-tight">Have a packaging challenge? Let&apos;s solve it.</h2>
+            <p className="mt-3 max-w-2xl text-white/70">
+              Tell us what you manufacture, move or store. Our team will identify the right packaging,
+              service or end-to-end model. Or call {COMPANY.phone}.
+            </p>
+          </div>
+          <RfqButton label="Generate My RFQ" />
+        </div>
+      </section>
     </SiteLayout>
   );
 }
