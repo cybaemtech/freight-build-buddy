@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-import heroImage from "@/assets/hero-packaging.jpg";
+import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
   BUSINESS_MODELS,
@@ -46,55 +46,7 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <SiteLayout>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-brand-blue-dark text-white">
-        <div className="pointer-events-none absolute -right-40 top-[-10rem] h-[28rem] w-[28rem] rounded-full bg-brand/20 blur-3xl" />
-        <div className="mx-auto grid max-w-[1280px] items-center gap-14 px-6 py-20 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.32em] text-brand-soft/90">
-              Sustainable · Reliable · Cost optimized
-            </p>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-[3.4rem]">
-              End-to-End Packaging Solutions That Keep Your Supply Chain Moving
-            </h1>
-            <p className="mt-6 max-w-xl text-white/75">
-              From packaging design and engineering to manufacturing, returnable packaging, rental,
-              warehousing and logistics support — VEVRA takes ownership of the packaging ecosystem
-              around your product.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <RfqButton />
-              <Link
-                to="/services"
-                className="arrow-move inline-flex items-center gap-2 rounded-xl border border-white/40 px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-white hover:text-brand-blue-dark"
-              >
-                Explore solutions <span className="arrow">→</span>
-              </Link>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl border border-white/10">
-              <img
-                src={heroImage}
-                alt="Engineered returnable packaging crates and metal racks in a modern manufacturing plant"
-                width={1280}
-                height={1024}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="border-t border-white/10">
-          <dl className="mx-auto grid max-w-[1280px] grid-cols-2 gap-8 px-6 py-10 sm:grid-cols-3 lg:grid-cols-5">
-            {STATS.map((s) => (
-              <div key={s.label}>
-                <dt className="text-3xl font-extrabold text-white">{s.value}</dt>
-                <dd className="mt-1 text-[11px] uppercase tracking-[0.16em] text-white/55">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <ImmersiveHero />
 
       {/* ECOSYSTEM */}
       <Section
