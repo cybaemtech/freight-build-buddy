@@ -8,7 +8,6 @@ type NavChild = { to: string; params?: Record<string, string>; label: string; de
 type NavItem = { to: string; label: string; children?: NavChild[]; columns?: 1 | 2 };
 
 const NAV: NavItem[] = [
-  { to: "/", label: "Home" },
   {
     to: "/about",
     label: "Company",
