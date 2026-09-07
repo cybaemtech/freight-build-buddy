@@ -193,3 +193,194 @@ body {
     transform: translateX(4px);
   }
 }
+
+/* ---------- About: purpose signature ---------- */
+@keyframes about-reveal {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes about-scan {
+  0%, 12% { transform: translateY(-120%); opacity: 0; }
+  22% { opacity: 0.65; }
+  55% { opacity: 0.25; }
+  72%, 100% { transform: translateY(560%); opacity: 0; }
+}
+
+@keyframes about-rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.about-signature {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, var(--color-background), var(--brand-blue-soft));
+}
+
+.about-blueprint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.48;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--brand-blue) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--brand-blue) 7%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+.about-reveal {
+  animation: about-reveal 0.85s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation-timeline: view();
+  animation-range: entry 12% cover 38%;
+}
+
+.about-reveal-delay { animation-delay: 120ms; }
+
+.about-purpose-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  transition: transform 500ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 500ms ease, border-color 500ms ease;
+}
+
+.about-purpose-card:hover { transform: translateY(-8px); }
+.about-purpose-card-light:hover { transform: translateY(32px); }
+
+.about-purpose-card-dark {
+  color: var(--primary-foreground);
+  background-color: var(--brand-blue-dark);
+  box-shadow: 0 30px 70px -38px color-mix(in oklab, var(--brand-blue-dark) 88%, transparent);
+}
+
+.about-purpose-card-light {
+  border: 1px solid color-mix(in oklab, var(--brand-blue) 15%, transparent);
+  background-color: color-mix(in oklab, var(--card) 94%, var(--brand-blue-soft));
+  box-shadow: 0 24px 60px -42px color-mix(in oklab, var(--brand-blue-dark) 75%, transparent);
+}
+
+.about-purpose-image,
+.about-image-shade,
+.about-card-lines {
+  position: absolute;
+  inset: 0;
+}
+
+.about-purpose-image { opacity: 0.62; }
+
+.about-image-shade {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand-blue-dark) 30%, transparent), var(--brand-blue-dark) 92%);
+}
+
+.about-scan-line {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background-color: var(--brand-red);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--brand-red) 70%, transparent);
+  animation: about-scan 5.5s ease-in-out infinite;
+}
+
+.about-card-lines {
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(135deg, transparent 0 22px, color-mix(in oklab, var(--brand-blue) 7%, transparent) 22px 23px);
+  mask-image: linear-gradient(135deg, transparent 30%, black);
+}
+
+.about-purpose-icon,
+.about-purpose-icon-light {
+  display: inline-flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+}
+
+.about-purpose-icon {
+  border: 1px solid color-mix(in oklab, var(--primary-foreground) 35%, transparent);
+  color: var(--primary-foreground);
+  background-color: color-mix(in oklab, var(--brand-blue-dark) 60%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.about-purpose-icon-light {
+  border: 1px solid color-mix(in oklab, var(--brand-blue) 18%, transparent);
+  color: var(--brand-red);
+  background-color: var(--card);
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.about-value-card {
+  position: relative;
+  min-height: 290px;
+  overflow: hidden;
+  border-block: 1px solid color-mix(in oklab, var(--brand-blue) 13%, transparent);
+  border-left: 1px solid color-mix(in oklab, var(--brand-blue) 13%, transparent);
+  background-color: color-mix(in oklab, var(--card) 95%, transparent);
+  padding: 2rem 1.5rem;
+  transition: background-color 450ms ease, transform 450ms cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 450ms ease;
+  animation: about-reveal 0.65s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  animation-delay: calc(var(--value-index) * 80ms);
+  animation-timeline: view();
+  animation-range: entry 8% cover 30%;
+}
+
+.about-value-card:last-child { border-right: 1px solid color-mix(in oklab, var(--brand-blue) 13%, transparent); }
+
+.about-value-card:hover {
+  z-index: 2;
+  transform: translateY(-10px);
+  background-color: var(--card);
+  box-shadow: 0 28px 55px -34px color-mix(in oklab, var(--brand-blue-dark) 65%, transparent);
+}
+
+.about-value-number {
+  font-size: 2rem;
+  font-weight: 300;
+  color: color-mix(in oklab, var(--brand-blue) 28%, transparent);
+  transition: color 400ms ease;
+}
+
+.about-value-card:hover .about-value-number { color: var(--brand-red); }
+
+.about-value-rule {
+  position: absolute;
+  inset-inline: 1.5rem;
+  bottom: 0;
+  height: 3px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background-color: var(--brand-red);
+  transition: transform 450ms cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.about-value-card:hover .about-value-rule { transform: scaleX(1); }
+
+@media (max-width: 1023px) {
+  .about-values-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-value-card:nth-child(even) { border-right: 1px solid color-mix(in oklab, var(--brand-blue) 13%, transparent); }
+  .about-purpose-card-light:hover { transform: translateY(32px); }
+}
+
+@media (max-width: 767px) {
+  .about-values-grid { grid-template-columns: 1fr; }
+  .about-value-card { min-height: 240px; border-right: 1px solid color-mix(in oklab, var(--brand-blue) 13%, transparent); }
+  .about-purpose-card-light { transform: none; }
+  .about-purpose-card-light:hover { transform: translateY(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-reveal,
+  .about-value-card,
+  .about-scan-line { animation: none; }
+  .about-purpose-card,
+  .about-purpose-card img,
+  .about-value-card { transition: none; }
+}
