@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { PRODUCTS } from "@/lib/site-content";
+import { PRODUCT_IMAGES } from "@/lib/site-images";
 
 export const Route = createFileRoute("/products/$slug")({
   loader: ({ params }) => {
@@ -36,7 +37,10 @@ function ProductDetail() {
     <SiteLayout>
       <PageHero eyebrow="Product capability" title={product.name} body={product.short} />
       <Section eyebrow="Overview" title={`${product.name} solutions`}>
-        <p className="max-w-3xl text-muted-foreground">{product.intro}</p>
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.85fr]">
+          <p className="max-w-3xl text-muted-foreground">{product.intro}</p>
+          <img src={PRODUCT_IMAGES[product.slug]} alt={`${product.name} solutions`} className="aspect-[3/2] w-full rounded-lg object-cover" loading="lazy" width={1536} height={1024} />
+        </div>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div>
             <h2 className="font-bold text-brand-blue-dark">What problem does it solve?</h2>

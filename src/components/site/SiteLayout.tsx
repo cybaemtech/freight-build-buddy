@@ -3,6 +3,7 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import vevraLogo from "@/assets/vevra-logo.png.asset.json";
 import { COMPANY, PRODUCTS, SERVICES } from "@/lib/site-content";
+import { SITE_IMAGES } from "@/lib/site-images";
 
 type NavChild = { to: string; params?: Record<string, string>; label: string; desc?: string };
 type NavItem = { to: string; label: string; children?: NavChild[]; columns?: 1 | 2 };
@@ -107,20 +108,42 @@ export function Section({
 }
 
 export function PageHero({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
+  const image =
+    eyebrow === "Products" || eyebrow === "Product capability" || eyebrow === "Clients"
+      ? SITE_IMAGES.products
+      : eyebrow === "Warehouses" || eyebrow === "Corporate office" || eyebrow === "Contact"
+        ? SITE_IMAGES.warehouse
+        : eyebrow === "Business model" || eyebrow === "Testimonials"
+          ? SITE_IMAGES.returnables
+          : SITE_IMAGES.engineering;
+
   return (
-    <header className="bg-brand-blue-dark py-20 text-white">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-soft/90">{eyebrow}</p>
-        <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
-        <p className="mt-5 max-w-3xl text-white/75">{body}</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <RfqButton />
-          <Link
-            to="/contact"
-            className="arrow-move inline-flex items-center gap-2 rounded-xl border border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-brand-blue-dark"
-          >
-            Talk to us <span className="arrow">→</span>
-          </Link>
+    <header className="overflow-hidden bg-brand-blue-dark text-white">
+      <div className="mx-auto grid min-h-[440px] max-w-[1280px] lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="flex flex-col justify-center px-6 py-16 lg:py-20 lg:pr-16">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-soft/90">{eyebrow}</p>
+          <h1 className="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight sm:text-5xl">{title}</h1>
+          <p className="mt-5 max-w-3xl text-white/75">{body}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <RfqButton />
+            <Link
+              to="/contact"
+              className="arrow-move inline-flex items-center gap-2 rounded-xl border border-white/40 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-brand-blue-dark"
+            >
+              Talk to us <span className="arrow">→</span>
+            </Link>
+          </div>
+        </div>
+        <div className="relative min-h-64 overflow-hidden lg:min-h-full">
+          <img
+            src={image}
+            alt={`${eyebrow} at VEVRA Packaging`}
+            className="absolute inset-0 h-full w-full object-cover"
+            width={1536}
+            height={1024}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--brand-blue-dark),transparent_45%)]" />
+          <div className="absolute inset-y-0 right-0 w-2 bg-brand" />
         </div>
       </div>
     </header>

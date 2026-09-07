@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { SERVICES } from "@/lib/site-content";
+import { SERVICE_IMAGES } from "@/lib/site-images";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -39,7 +40,10 @@ function ServiceDetail() {
     <SiteLayout>
       <PageHero eyebrow="Service capability" title={service.name} body={service.short} />
       <Section eyebrow="Overview" title="What this service covers">
-        <p className="max-w-3xl text-muted-foreground">{service.intro}</p>
+        <div className="grid items-center gap-8 lg:grid-cols-[1fr_0.85fr]">
+          <p className="max-w-3xl text-muted-foreground">{service.intro}</p>
+          <img src={SERVICE_IMAGES[service.slug]} alt={`${service.name} operations`} className="aspect-[3/2] w-full rounded-lg object-cover" loading="lazy" width={1536} height={1024} />
+        </div>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2">
           {service.points.map((pt: string) => (
             <li

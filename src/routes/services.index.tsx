@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { SERVICES } from "@/lib/site-content";
+import { SERVICE_IMAGES } from "@/lib/site-images";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -37,10 +38,11 @@ function ServicesPage() {
           {SERVICES.map((s, i) => (
             <article
               key={s.slug}
-              className="lift arrow-move grid gap-4 rounded-2xl border border-border bg-card p-7 md:grid-cols-[80px_1fr_auto] md:items-center"
+              className="lift arrow-move grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-[180px_80px_1fr_auto] md:items-center"
             >
-              <span className="text-2xl font-extrabold text-brand/70">{String(i + 1).padStart(2, "0")}</span>
-              <div>
+              <img src={SERVICE_IMAGES[s.slug]} alt={s.name} className="h-44 w-full object-cover md:h-full" loading="lazy" width={1536} height={1024} />
+              <span className="px-7 text-2xl font-extrabold text-brand/70 md:px-0">{String(i + 1).padStart(2, "0")}</span>
+              <div className="px-7 pb-2 md:px-0 md:py-7">
                 <h2 className="text-lg font-bold text-brand-blue-dark">{s.name}</h2>
                 <p className="mt-1.5 text-sm text-muted-foreground">{s.short}</p>
                 <p className="mt-3 text-xs uppercase tracking-[0.14em] text-brand-blue/70">
@@ -50,7 +52,7 @@ function ServicesPage() {
               <Link
                 to="/services/$slug"
                 params={{ slug: s.slug }}
-                className="text-xs font-bold uppercase tracking-[0.16em] text-brand md:text-right"
+                className="px-7 pb-7 text-xs font-bold uppercase tracking-[0.16em] text-brand md:px-7 md:py-7 md:text-right"
               >
                 Explore service <span className="arrow">→</span>
               </Link>
