@@ -37,19 +37,22 @@ function ProductsPage() {
           {PRODUCTS.map((p) => (
             <article
               key={p.slug}
-              className="flex flex-col rounded-lg border border-border border-t-4 border-t-brand p-6"
+              className="lift arrow-move flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
             >
-              <h2 className="text-lg font-bold uppercase tracking-wide text-brand-blue-dark">
-                {p.name}
-              </h2>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.short}</p>
-              <Link
-                to="/products/$slug"
-                params={{ slug: p.slug }}
-                className="mt-4 text-sm font-semibold uppercase tracking-wide text-brand hover:underline"
-              >
-                View details →
-              </Link>
+              <div className="flex h-32 items-end bg-brand-blue-dark p-6">
+                <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-soft/90">Capability</span>
+              </div>
+              <div className="flex flex-1 flex-col p-7">
+                <h2 className="text-lg font-bold text-brand-blue-dark">{p.name}</h2>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.short}</p>
+                <Link
+                  to="/products/$slug"
+                  params={{ slug: p.slug }}
+                  className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-brand"
+                >
+                  Explore <span className="arrow">→</span>
+                </Link>
+              </div>
             </article>
           ))}
         </div>
