@@ -16,11 +16,10 @@ import {
   EVOLUTION,
   FUTURE_DIRECTIONS,
   PRODUCTS,
-  SERVICES,
   STATS,
   VALUE_OUTCOMES,
 } from "@/lib/site-content";
-import { PRODUCT_IMAGES, SERVICE_IMAGES } from "@/lib/site-images";
+import { PRODUCT_IMAGES } from "@/lib/site-images";
 
 const ECOSYSTEM = [
   "Design",
