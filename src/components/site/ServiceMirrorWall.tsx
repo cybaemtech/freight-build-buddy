@@ -31,7 +31,7 @@ export function ServiceMirrorWall() {
           role="button"
           aria-pressed={flipped === index}
           aria-label={service.name}
-          onPointerDown={() => toggleCard(index)}
+          onClick={() => toggleCard(index)}
           onKeyDown={(event) => handleKeyDown(event, index)}
         >
           <div className="service-flip-card-inner">
@@ -65,7 +65,7 @@ export function ServiceMirrorWall() {
                 to="/services/$slug"
                 params={{ slug: service.slug }}
                 className="service-flip-link"
-                onPointerDown={(event) => event.stopPropagation()}
+                onClick={(event) => event.stopPropagation()}
               >
                 Explore service <ArrowUpRight aria-hidden="true" />
               </Link>

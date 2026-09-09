@@ -369,8 +369,6 @@ body {
 .service-flip-link:hover svg { transform: translate(2px, -2px); }
 
 @media (hover: hover) and (pointer: fine) {
-  .service-flip-card[data-axis="horizontal"]:hover .service-flip-card-inner { transform: rotateY(180deg); }
-  .service-flip-card[data-axis="vertical"]:hover .service-flip-card-inner { transform: rotateX(180deg); }
   .service-flip-card:hover .service-flip-image { transform: scale(1.06); filter: saturate(1) contrast(1.05); }
   .service-flip-card:hover .service-flip-reflection { transform: translateX(72%) skewX(-18deg); }
 }
