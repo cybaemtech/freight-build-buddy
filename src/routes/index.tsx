@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { BusinessModelSpectrum } from "@/components/site/BusinessModelSpectrum";
 import { CeoStatement } from "@/components/site/CeoStatement";
 import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
