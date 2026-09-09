@@ -10,6 +10,7 @@ type Tile = {
   alt: string;
   caption: string;
   span: "tall" | "wide" | "regular";
+  position?: string;
 };
 
 const TILES: Tile[] = [
@@ -30,6 +31,7 @@ const TILES: Tile[] = [
     alt: "VEVRA team in a working review session",
     caption: "Customer review sessions",
     span: "regular",
+    position: "center 25%",
   },
   {
     url: office02.url,
@@ -63,6 +65,7 @@ export function OfficeCollageWall() {
               loading="lazy"
               decoding="async"
               className="office-tile-image"
+              style={{ objectPosition: tile.position }}
             />
             <span className="office-tile-veil" aria-hidden="true" />
             <figcaption className="office-tile-caption">
