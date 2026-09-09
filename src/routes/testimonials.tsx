@@ -22,19 +22,24 @@ export const Route = createFileRoute("/testimonials")({
   component: TestimonialsPage,
 });
 
-const INITIALS = ["MK", "NS", "HR", "AJ", "SP"];
+function initialsFromName(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
 
 function TestimonialCard({
   quote,
   name,
   org,
-  initials,
   featured = false,
 }: {
   quote: string;
   name: string;
   org: string;
-  initials: string;
   featured?: boolean;
 }) {
   return (
