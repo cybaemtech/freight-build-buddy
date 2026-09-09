@@ -31,6 +31,7 @@ const TILES: Tile[] = [
     alt: "VEVRA team in a working review session",
     caption: "Customer review sessions",
     span: "regular",
+    position: "center 25%",
   },
   {
     url: office02.url,
