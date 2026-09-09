@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { OfficeCollageWall } from "@/components/site/OfficeCollageWall";
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import { COMPANY } from "@/lib/site-content";
 
@@ -44,6 +45,17 @@ function CorporateOfficePage() {
               <li>{COMPANY.marketingEmail}</li>
               <li>{COMPANY.timings}</li>
             </ul>
+          </div>
+        </div>
+        <div className="mt-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand">Inside VEVRA</p>
+          <h2 className="mt-2 text-2xl font-bold text-brand-blue-dark">Our people, our office, our way of working</h2>
+          <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+            A closer look at the team and the corporate office in Kuruli, Pune, where packaging problems are studied,
+            engineered and managed end to end.
+          </p>
+          <div className="mt-6">
+            <OfficeCollageWall />
           </div>
         </div>
         <div className="mt-10">
