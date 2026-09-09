@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { CeoStatement } from "@/components/site/CeoStatement";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
@@ -48,6 +49,8 @@ function HomePage() {
   return (
     <SiteLayout>
       <ImmersiveHero />
+
+      <CeoStatement />
 
       {/* ECOSYSTEM */}
       <Section
