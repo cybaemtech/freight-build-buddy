@@ -219,13 +219,11 @@ body {
   transition: transform 760ms cubic-bezier(0.2, 0.72, 0.22, 1);
 }
 
-.service-flip-card[data-axis="horizontal"]:hover .service-flip-card-inner,
 .service-flip-card[data-axis="horizontal"]:focus .service-flip-card-inner,
 .service-flip-card[data-axis="horizontal"][data-flipped="true"] .service-flip-card-inner {
   transform: rotateY(180deg);
 }
 
-.service-flip-card[data-axis="vertical"]:hover .service-flip-card-inner,
 .service-flip-card[data-axis="vertical"]:focus .service-flip-card-inner,
 .service-flip-card[data-axis="vertical"][data-flipped="true"] .service-flip-card-inner {
   transform: rotateX(180deg);
@@ -258,7 +256,6 @@ body {
   transition: transform 800ms cubic-bezier(0.2, 0.72, 0.22, 1), filter 500ms ease;
 }
 
-.service-flip-card:hover .service-flip-image,
 .service-flip-card:focus .service-flip-image {
   transform: scale(1.06);
   filter: saturate(1) contrast(1.05);
@@ -280,7 +277,6 @@ body {
   transition: transform 900ms cubic-bezier(0.2, 0.72, 0.22, 1);
 }
 
-.service-flip-card:hover .service-flip-reflection,
 .service-flip-card:focus .service-flip-reflection {
   transform: translateX(72%) skewX(-18deg);
 }
@@ -371,6 +367,13 @@ body {
 
 .service-flip-link svg { width: 1rem; height: 1rem; transition: transform 200ms ease; }
 .service-flip-link:hover svg { transform: translate(2px, -2px); }
+
+@media (hover: hover) and (pointer: fine) {
+  .service-flip-card[data-axis="horizontal"]:hover .service-flip-card-inner { transform: rotateY(180deg); }
+  .service-flip-card[data-axis="vertical"]:hover .service-flip-card-inner { transform: rotateX(180deg); }
+  .service-flip-card:hover .service-flip-image { transform: scale(1.06); filter: saturate(1) contrast(1.05); }
+  .service-flip-card:hover .service-flip-reflection { transform: translateX(72%) skewX(-18deg); }
+}
 
 @media (max-width: 1023px) {
   .service-mirror-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
