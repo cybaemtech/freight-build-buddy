@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { BusinessModelSpectrum } from "@/components/site/BusinessModelSpectrum";
 import { CeoStatement } from "@/components/site/CeoStatement";
 import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
-  BUSINESS_MODELS,
+  
   CLIENTS,
   COMMITMENTS,
   COMPANY,
@@ -183,22 +184,9 @@ function HomePage() {
         title="Choose the right packaging model."
         lead="Own it, rent it, pool it — or let VEVRA manage the entire ecosystem end to end."
       >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {BUSINESS_MODELS.map((m) => (
-            <div key={m.title} className="lift rounded-2xl border border-border bg-card p-7">
-              <h3 className="text-lg font-bold text-brand-blue-dark">{m.title}</h3>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-brand">{m.flow}</p>
-              <p className="mt-3 text-sm text-muted-foreground">{m.body}</p>
-            </div>
-          ))}
-        </div>
-        <Link
-          to="/business-model"
-          className="arrow-move mt-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-brand"
-        >
-          Compare all models <span className="arrow">→</span>
-        </Link>
+        <BusinessModelSpectrum />
       </Section>
+
 
       {/* VALUE OUTCOMES */}
       <Section eyebrow="Business value" title="From packaging cost to business value" dark>
