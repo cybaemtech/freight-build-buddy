@@ -4,6 +4,7 @@ import { BusinessModelSpectrum } from "@/components/site/BusinessModelSpectrum";
 import { CeoStatement } from "@/components/site/CeoStatement";
 import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
+import { ServiceMirrorWall } from "@/components/site/ServiceMirrorWall";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
   
@@ -15,11 +16,10 @@ import {
   EVOLUTION,
   FUTURE_DIRECTIONS,
   PRODUCTS,
-  SERVICES,
   STATS,
   VALUE_OUTCOMES,
 } from "@/lib/site-content";
-import { PRODUCT_IMAGES, SERVICE_IMAGES } from "@/lib/site-images";
+import { PRODUCT_IMAGES } from "@/lib/site-images";
 
 const ECOSYSTEM = [
   "Design",
@@ -153,29 +153,7 @@ function HomePage() {
         title="Packaging managed as a system, not a purchase order."
         tint
       >
-        <div className="space-y-5">
-          {SERVICES.map((s, i) => (
-            <Link
-              key={s.slug}
-              to="/services/$slug"
-              params={{ slug: s.slug }}
-              className="lift arrow-move grid overflow-hidden rounded-2xl border border-border bg-card md:grid-cols-[160px_80px_1fr_auto] md:items-center"
-            >
-              <img src={SERVICE_IMAGES[s.slug]} alt={s.name} className="h-40 w-full object-cover md:h-full" loading="lazy" width={1536} height={1024} />
-              <span className="px-7 text-2xl font-extrabold text-brand/70 md:px-0">{String(i + 1).padStart(2, "0")}</span>
-              <div className="px-7 pb-2 md:px-0 md:py-7">
-                <h3 className="text-lg font-bold text-brand-blue-dark">{s.name}</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">{s.short}</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.14em] text-brand-blue/70">
-                  {s.points.slice(0, 4).join(" • ")}
-                </p>
-              </div>
-              <span className="px-7 pb-7 text-xs font-bold uppercase tracking-[0.16em] text-brand md:px-7 md:py-7 md:text-right">
-                Explore service <span className="arrow">→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
+        <ServiceMirrorWall />
       </Section>
 
       {/* BUSINESS MODELS */}
