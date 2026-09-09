@@ -55,7 +55,7 @@ function TestimonialCard({
             featured ? "h-16 w-16 text-xl sm:h-20 sm:w-20" : "h-12 w-12 text-sm"
           }`}
         >
-          {initials}
+          {initialsFromName(name)}
         </div>
       </div>
       <div className="mt-5 flex flex-1 flex-col md:mt-0">
@@ -122,21 +122,9 @@ function TestimonialsPage() {
       />
       <Section>
         <div className="grid gap-6 md:grid-cols-2">
-          <TestimonialCard
-            quote={featured.quote}
-            name={featured.name}
-            org={featured.org}
-            initials={INITIALS[0]}
-            featured
-          />
-          {rest.map((t, i) => (
-            <TestimonialCard
-              key={t.name}
-              quote={t.quote}
-              name={t.name}
-              org={t.org}
-              initials={INITIALS[i + 1]}
-            />
+          <TestimonialCard quote={featured.quote} name={featured.name} org={featured.org} featured />
+          {rest.map((t) => (
+            <TestimonialCard key={t.name} quote={t.quote} name={t.name} org={t.org} />
           ))}
         </div>
         <TrustBanner />
