@@ -103,7 +103,10 @@ function TrustBanner() {
 }
 
 function TestimonialsPage() {
-  const [featured, ...rest] = TESTIMONIALS;
+  const featured = TESTIMONIALS[0];
+  const rest = TESTIMONIALS.slice(1);
+
+  if (!featured) return null;
 
   return (
     <SiteLayout>
