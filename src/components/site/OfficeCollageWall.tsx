@@ -65,6 +65,7 @@ export function OfficeCollageWall() {
               loading="lazy"
               decoding="async"
               className="office-tile-image"
+              style={{ objectPosition: tile.position }}
             />
             <span className="office-tile-veil" aria-hidden="true" />
             <figcaption className="office-tile-caption">
