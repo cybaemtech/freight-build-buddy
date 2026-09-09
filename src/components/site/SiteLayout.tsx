@@ -109,7 +109,7 @@ export function Section({
   );
 }
 
-export function PageHero({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
+export function PageHero({ eyebrow, title, body }: { eyebrow: string; title: ReactNode; body: string }) {
   const image =
     eyebrow === "Products" || eyebrow === "Product capability" || eyebrow === "Clients"
       ? SITE_IMAGES.products
