@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { CeoStatement } from "@/components/site/CeoStatement";
+import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {

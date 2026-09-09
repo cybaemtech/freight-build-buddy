@@ -12,7 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { ClientLogoGrid, ClientLogoMarquee } from "@/components/site/ClientLogoWall";
+import { ClientLogoGrid } from "@/components/site/ClientLogoWall";
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 
 export const Route = createFileRoute("/clients")({
