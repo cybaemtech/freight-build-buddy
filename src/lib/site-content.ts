@@ -179,6 +179,21 @@ export const TESTIMONIALS = [
   },
 ];
 
+export const CASE_STUDIES = [
+  {
+    step: "Customer challenge",
+    body: "VEVRA intervention, solution and measurable business impact to be added after customer approval.",
+  },
+  {
+    step: "Customer testimonial",
+    body: "Real customer voice, photograph and company attribution will be published only where permission is available.",
+  },
+  {
+    step: "Business impact",
+    body: "The case-study format will show what changed across cost, quality, efficiency, sustainability and availability.",
+  },
+];
+
 export const CLIENTS = [
   "Automotive", "Engineering", "Industrial Manufacturing", "FMCG", "Electronics", "Consumer Products", "Agriculture", "E-commerce / Quick Commerce", "Other Industries",
 ];
