@@ -103,10 +103,6 @@ function ClientsPage() {
         lead="From global OEMs to regional manufacturers, VEVRA supports packaging programmes across demanding industrial supply chains."
       >
         <ClientLogoGrid />
-        <div className="mt-14 rounded-2xl border border-border bg-background px-4 py-6">
-          <p className="mb-2 px-2 text-[11px] font-bold uppercase tracking-[0.28em] text-brand">In motion</p>
-          <ClientLogoMarquee />
-        </div>
       </Section>
 
       <Section
