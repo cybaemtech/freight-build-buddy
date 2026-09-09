@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Quote, Star } from "lucide-react";
 
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
-import { TESTIMONIALS } from "@/lib/site-content";
+import { CASE_STUDIES, TESTIMONIALS } from "@/lib/site-content";
 
 export const Route = createFileRoute("/testimonials")({
   head: () => ({
@@ -88,6 +88,44 @@ function TestimonialCard({
   );
 }
 
+function CaseStudyFormat() {
+  return (
+    <div className="mb-16 rounded-3xl border border-border bg-white p-6 shadow-sm sm:p-10">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-brand">Case-study format</p>
+          <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-brand-blue-dark sm:text-3xl">
+            How we document customer success
+          </h2>
+        </div>
+        <p className="max-w-md text-sm text-muted-foreground">
+          Every story follows a clear path from challenge to measurable business impact.
+        </p>
+      </div>
+      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        {CASE_STUDIES.map((cs, index) => (
+          <div
+            key={cs.step}
+            className="relative rounded-2xl bg-brand-blue-soft p-6 transition-colors hover:bg-brand-blue-soft/70"
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand text-xs font-extrabold text-white">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-sm font-bold uppercase tracking-wide text-brand-blue-dark">{cs.step}</h3>
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{cs.body}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-6 flex items-center gap-2 rounded-xl bg-brand-blue-soft/50 px-4 py-3 text-xs text-muted-foreground">
+        <span className="h-2 w-2 rounded-full bg-brand" />
+        Real customer evidence, photographs and company attribution will be published only where permission is available.
+      </div>
+    </div>
+  );
+}
+
 function TrustBanner() {
   return (
     <div className="mt-16 grid gap-6 rounded-3xl bg-brand-blue-dark p-8 text-white sm:grid-cols-3 sm:p-10">
@@ -121,6 +159,7 @@ function TestimonialsPage() {
         body="If our customer wins, we win. Read how VEVRA Packaging has helped businesses reduce costs, improve delivery performance and simplify packaging operations."
       />
       <Section>
+        <CaseStudyFormat />
         <div className="grid gap-6 md:grid-cols-2">
           <TestimonialCard quote={featured.quote} name={featured.name} org={featured.org} featured />
           {rest.map((t) => (
