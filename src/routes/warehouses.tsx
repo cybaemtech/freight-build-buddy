@@ -26,7 +26,7 @@ function WarehousesPage() {
     <SiteLayout>
       <PageHero
         eyebrow="Warehouses"
-        title="Closer to your operations. Closer to your customers."
+        title={<>Closer to your operations;&nbsp;<br />Closer to your customers!</>}
         body="VEVRA's locations support packaging inventory, returnable asset management, availability and coordinated supply-chain operations."
       />
       <Section>
