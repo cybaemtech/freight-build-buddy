@@ -10,6 +10,7 @@ type Tile = {
   alt: string;
   caption: string;
   span: "tall" | "wide" | "regular";
+  position?: string;
 };
 
 const TILES: Tile[] = [
