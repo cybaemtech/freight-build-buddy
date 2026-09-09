@@ -6,7 +6,7 @@ import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
-  BUSINESS_MODELS,
+  
   CLIENTS,
   COMMITMENTS,
   COMPANY,
