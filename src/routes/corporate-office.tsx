@@ -33,8 +33,12 @@ function CorporateOfficePage() {
       <Section>
         <div className="grid gap-8 md:grid-cols-2">
           <div className="rounded-lg border border-border border-t-4 border-t-brand p-7">
-            <h2 className="text-lg font-bold text-brand-blue-dark">Registered address</h2>
-            <p className="mt-3 text-sm text-muted-foreground">{COMPANY.address}</p>
+            <h2 className="text-lg font-bold text-brand-blue-dark">Headquarters Address</h2>
+            <div className="mt-3 space-y-0.5 text-sm text-muted-foreground">
+              <p>Gat No. 344, Village Kuruli,</p>
+              <p>Tal. Khed, Dist. Pune – 410 501,</p>
+              <p>Maharashtra, India</p>
+            </div>
           </div>
           <div className="rounded-lg border border-border border-t-4 border-t-brand-blue p-7">
             <h2 className="text-lg font-bold text-brand-blue-dark">Reach us</h2>
