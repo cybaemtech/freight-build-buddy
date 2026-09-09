@@ -944,3 +944,37 @@ body {
   .india-link-pulse { display: none; }
   .india-loc { transition: none; }
 }
+
+/* ---------- Clients page ---------- */
+@keyframes client-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.client-marquee::before,
+.client-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6rem;
+  z-index: 2;
+  pointer-events: none;
+}
+.client-marquee::before { left: 0; background: linear-gradient(90deg, var(--color-background), transparent); }
+.client-marquee::after { right: 0; background: linear-gradient(270deg, var(--color-background), transparent); }
+
+.client-marquee-track { animation: client-marquee 34s linear infinite; }
+.client-marquee:hover .client-marquee-track { animation-play-state: paused; }
+
+.client-reveal {
+  animation: about-reveal 0.7s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.client-logo-tile { transition: background-color 0.25s ease; }
+.client-logo-tile:hover { background-color: color-mix(in oklab, var(--brand-blue-soft) 70%, white); }
+
+@media (prefers-reduced-motion: reduce) {
+  .client-marquee-track { animation: none; }
+  .client-reveal { animation: none; }
+}
