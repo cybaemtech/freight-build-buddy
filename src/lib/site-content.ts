@@ -152,9 +152,31 @@ export const BUSINESS_MODELS = [
 export const BUSINESS_MODEL = BUSINESS_MODELS.map((model) => ({ step: model.title, body: model.body }));
 
 export const TESTIMONIALS = [
-  { quote: "Customer challenge, VEVRA intervention, solution and measurable business impact to be added after customer approval.", name: "Customer success story", org: "Evidence-led case study" },
-  { quote: "Real customer voice, photograph and company attribution will be published only where permission is available.", name: "Customer testimonial", org: "Publication approval required" },
-  { quote: "The case-study format will show what changed across cost, quality, efficiency, sustainability and availability.", name: "Business impact", org: "Validated proof to be added" },
+  {
+    quote: "Choosing Vevra Packaging was a game-changer for our bottom line. They tailored solutions that slashed our packaging costs, delivering results without the need for extra investment. Exceptional service!",
+    name: "Mahesh Kamble",
+    org: "Customer",
+  },
+  {
+    quote: "Vevra Packaging's cost-saving strategies transformed our packaging operations. Their expertise and dedication to efficiency are unmatched.",
+    name: "Nikita Sawant",
+    org: "Customer",
+  },
+  {
+    quote: "Thanks to Vevra Packaging, we've significantly cut down on our packaging expenses. Their innovative approach saved us money without requiring additional investments. Highly recommended!",
+    name: "Hasib Rahman",
+    org: "Customer",
+  },
+  {
+    quote: "Their solutions are ingenious and practical, making them an invaluable partner.",
+    name: "Ashish Jadhav",
+    org: "Customer",
+  },
+  {
+    quote: "We are happy to say that we are seeing very good delivery performance and service both from returnable packaging & logistic stand as we have not heard a single complaint from our customer till date.",
+    name: "Sanjay Powar",
+    org: "Customer",
+  },
 ];
 
 export const CLIENTS = [
