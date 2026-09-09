@@ -47,7 +47,7 @@ const TILES: Tile[] = [
     url: office01.url,
     alt: "VEVRA colleagues working together in the office lounge",
     caption: "Everyday collaboration",
-    span: "regular",
+    span: "tall",
   },
 ];
 
