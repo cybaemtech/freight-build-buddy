@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/vevra-logo.svg";
+import logoAsset from "@/assets/vevra-logo.png.asset.json";
 /* ============ CONFIG — VEVRA PACKAGING ============ */
 export const CONFIG = {
   companyName: "VEVRA PACKAGING",
@@ -318,7 +318,7 @@ Notes: ${state.cNotes}
 
 async function loadLogo(): Promise<string | null> {
   try {
-    const res = await fetch(logoAsset);
+    const res = await fetch(logoAsset.url);
     if (!res.ok) return null;
     const blob = await res.blob();
     return await new Promise<string>((resolve, reject) => {

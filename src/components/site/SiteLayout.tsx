@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 
-import vevraLogo from "@/assets/vevra-logo.svg";
+import vevraLogoAsset from "@/assets/vevra-logo.png.asset.json";
 import { COMPANY, PRODUCTS, SERVICES } from "@/lib/site-content";
 import { SITE_IMAGES } from "@/lib/site-images";
+
+const vevraLogo = vevraLogoAsset.url;
 
 type NavChild = { to: string; params?: Record<string, string>; label: string; desc?: string };
 type NavItem = { to: string; label: string; children?: NavChild[]; columns?: 1 | 2 };

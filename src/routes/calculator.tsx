@@ -17,7 +17,9 @@ import {
   initialState,
   routeLabel,
 } from "@/lib/rfq-logic";
-import vevraLogo from "@/assets/vevra-logo.svg";
+import vevraLogoAsset from "@/assets/vevra-logo.png.asset.json";
+
+const vevraLogo = vevraLogoAsset.url;
 
 export const Route = createFileRoute("/calculator")({
   head: () => ({
