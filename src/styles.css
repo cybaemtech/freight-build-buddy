@@ -745,3 +745,202 @@ body {
   .about-purpose-card img,
   .about-value-card { transition: none; }
 }
+
+/* ---------- Pan-India network map ---------- */
+@keyframes india-link-draw {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  12% { opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.35; }
+}
+
+@keyframes india-packet {
+  0% { stroke-dashoffset: 1; }
+  100% { stroke-dashoffset: -1; }
+}
+
+@keyframes india-node-in {
+  from { opacity: 0; transform: scale(0.2); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes india-ring-pulse {
+  0% { opacity: 0.7; transform: scale(0.35); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+.india-network {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--brand-blue-dark);
+  padding: 2.5rem 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .india-network { padding: 3.5rem 3rem; }
+}
+
+.india-net-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary-foreground) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary-foreground) 8%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 40% 40%, black, transparent 78%);
+}
+
+.india-map-shell {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--primary-foreground) 13%, transparent);
+  border-radius: var(--radius-lg);
+  background-color: color-mix(in oklab, var(--brand-blue-dark) 86%, var(--brand-blue));
+  box-shadow: 0 38px 80px -42px color-mix(in oklab, var(--foreground) 78%, transparent);
+}
+
+.india-map-svg { width: 100%; height: 100%; }
+
+.india-land {
+  fill: color-mix(in oklab, var(--brand-blue) 40%, var(--brand-blue-dark));
+  stroke: color-mix(in oklab, var(--primary-foreground) 26%, transparent);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.india-land-glow {
+  fill: none;
+  stroke: color-mix(in oklab, var(--brand-red) 40%, transparent);
+  stroke-width: 10;
+  stroke-linejoin: round;
+  filter: blur(6px);
+}
+
+.india-link,
+.india-link-pulse {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.india-link {
+  stroke: color-mix(in oklab, var(--primary-foreground) 32%, transparent);
+  stroke-width: 1.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: india-link-draw 5.2s ease-out infinite;
+  animation-delay: var(--link-delay);
+}
+
+.india-link-pulse {
+  stroke: var(--brand-red);
+  stroke-width: 2.6;
+  stroke-dasharray: 0.08 0.92;
+  animation: india-packet 3.6s linear infinite;
+  animation-delay: var(--link-delay);
+}
+
+.india-link-group.is-active .india-link {
+  stroke: color-mix(in oklab, var(--brand-red) 65%, transparent);
+  stroke-width: 2.2;
+  animation: none;
+  stroke-dashoffset: 0;
+}
+
+.india-node {
+  cursor: pointer;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: india-node-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: var(--node-delay);
+}
+
+.india-node-hit { fill: transparent; }
+
+.india-node-dot {
+  fill: var(--primary-foreground);
+  stroke: var(--brand-red);
+  stroke-width: 2;
+  transition: r 220ms ease;
+}
+
+.india-node-hub { fill: var(--brand-red); stroke: var(--primary-foreground); }
+
+.india-node-ring {
+  fill: none;
+  stroke: var(--brand-red);
+  stroke-width: 1.4;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: india-ring-pulse 2.8s ease-out infinite;
+  animation-delay: var(--node-delay);
+}
+
+.india-node-label {
+  fill: color-mix(in oklab, var(--primary-foreground) 62%, transparent);
+  font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transition: opacity 220ms ease, fill 220ms ease;
+  pointer-events: none;
+}
+
+.india-node.is-active .india-node-label { opacity: 1; fill: var(--primary-foreground); }
+.india-node.is-active .india-node-dot { r: 8; }
+
+.india-legend {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  border: 1px solid color-mix(in oklab, var(--primary-foreground) 10%, transparent);
+  border-radius: var(--radius-md);
+  background-color: color-mix(in oklab, var(--brand-blue-dark) 78%, transparent);
+  padding: 0.5rem 0.75rem;
+  backdrop-filter: blur(8px);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--primary-foreground) 60%, transparent);
+}
+
+.india-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.india-legend i { display: inline-block; height: 8px; width: 8px; border-radius: 999px; }
+.india-dot-hub { background-color: var(--brand-red); }
+.india-dot-mfg { background-color: var(--primary-foreground); box-shadow: 0 0 0 1.5px var(--brand-red); }
+.india-dot-wh { background-color: color-mix(in oklab, var(--primary-foreground) 70%, transparent); }
+
+.india-loc {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid color-mix(in oklab, var(--primary-foreground) 11%, transparent);
+  border-radius: var(--radius-md);
+  background-color: color-mix(in oklab, var(--primary-foreground) 4%, transparent);
+  padding: 0.7rem 0.85rem;
+  transition: border-color 220ms ease, background-color 220ms ease, transform 220ms ease;
+}
+
+.india-loc:hover,
+.india-loc.is-active {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--brand-red) 70%, transparent);
+  background-color: color-mix(in oklab, var(--primary-foreground) 8%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .india-link,
+  .india-link-pulse,
+  .india-node,
+  .india-node-ring { animation: none; }
+  .india-link { stroke-dashoffset: 0; opacity: 1; }
+  .india-link-pulse { display: none; }
+  .india-loc { transition: none; }
+}

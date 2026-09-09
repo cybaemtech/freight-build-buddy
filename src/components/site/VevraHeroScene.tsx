@@ -234,11 +234,11 @@ function Showroom({ activeIndex, reducedMotion }: { activeIndex: number; reduced
 }
 
 class ThreeErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  state = { hasError: false };
+  override state = { hasError: false };
   static getDerivedStateFromError() {
     return { hasError: true };
   }
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div className="flex h-full w-full items-center justify-center bg-brand-blue-dark text-white p-6 text-center">
