@@ -71,8 +71,8 @@ export function ImmersiveHero() {
             <VevraHeroScene activeIndex={activeIndex} />
           </Suspense>
         </ClientOnly>
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,var(--brand-blue-dark)_0%,transparent_55%)] lg:bg-[linear-gradient(90deg,var(--brand-blue-dark)_0%,color-mix(in_oklab,var(--brand-blue-dark)_88%,transparent)_22%,transparent_58%)]" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,var(--brand-blue-dark),transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,color-mix(in_oklab,var(--brand-blue-dark)_75%,transparent)_0%,transparent_60%)] lg:bg-[linear-gradient(90deg,var(--brand-blue-dark)_0%,color-mix(in_oklab,var(--brand-blue-dark)_55%,transparent)_28%,transparent_62%)]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,color-mix(in_oklab,var(--brand-blue-dark)_85%,transparent),transparent)]" />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100svh-72px)] max-w-[1280px] flex-col px-6 pb-7 pt-12 lg:min-h-[720px] lg:pb-8 lg:pt-16">
