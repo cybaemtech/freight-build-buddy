@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { CeoStatement } from "@/components/site/CeoStatement";
+import { ClientLogoMarquee } from "@/components/site/ClientLogoWall";
 import { ImmersiveHero } from "@/components/site/ImmersiveHero";
 import { RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
 import {
@@ -49,6 +50,15 @@ function HomePage() {
   return (
     <SiteLayout>
       <ImmersiveHero />
+
+      <section className="border-b border-border bg-background py-10">
+        <div className="mx-auto max-w-[1280px] px-6">
+          <div className="rounded-2xl border border-border bg-card px-4 py-6">
+            <p className="mb-2 px-2 text-[11px] font-bold uppercase tracking-[0.28em] text-brand">In motion</p>
+            <ClientLogoMarquee />
+          </div>
+        </div>
+      </section>
 
       <CeoStatement />
 

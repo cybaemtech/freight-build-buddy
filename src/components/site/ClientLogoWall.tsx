@@ -63,7 +63,7 @@ export function ClientLogoMarquee() {
             loading="lazy"
             width={193}
             height={183}
-            className="h-14 w-auto rounded-md opacity-70 grayscale transition hover:opacity-100 hover:grayscale-0"
+            className="h-14 w-auto rounded-md opacity-100 transition duration-300 hover:scale-105"
           />
         ))}
       </div>
