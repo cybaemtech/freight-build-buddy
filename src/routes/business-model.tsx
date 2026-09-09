@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
+import { ModelExplorer } from "@/components/site/ModelExplorer";
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
-import { BUSINESS_MODELS, COMPANY } from "@/lib/site-content";
+import { COMPANY } from "@/lib/site-content";
 
 export const Route = createFileRoute("/business-model")({
   head: () => ({
