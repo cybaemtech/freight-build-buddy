@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
+import { ModelExplorer } from "@/components/site/ModelExplorer";
 import { PageHero, RfqButton, Section, SiteLayout } from "@/components/site/SiteLayout";
-import { BUSINESS_MODELS, COMPANY } from "@/lib/site-content";
+import { COMPANY } from "@/lib/site-content";
 
 export const Route = createFileRoute("/business-model")({
   head: () => ({
@@ -106,22 +107,10 @@ function BusinessModelPage() {
         </div>
       </Section>
 
-      <Section eyebrow="All models" title="How each model works">
-        <ol className="space-y-5">
-          {BUSINESS_MODELS.map((b, i) => (
-            <li key={b.title} className="lift flex gap-5 rounded-2xl border border-border bg-card p-7">
-              <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-brand text-sm font-bold text-white">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h2 className="font-bold text-brand-blue-dark">{b.title}</h2>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand">{b.flow}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{b.body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-        <p className="mt-10 text-xl font-extrabold text-brand-blue-dark">{COMPANY.promise}</p>
+      <ModelExplorer />
+
+      <Section>
+        <p className="text-xl font-extrabold text-brand-blue-dark">{COMPANY.promise}</p>
         <div className="mt-8">
           <RfqButton variant="secondary" />
         </div>
