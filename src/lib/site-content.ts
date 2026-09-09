@@ -155,7 +155,7 @@ export const TESTIMONIALS = [
   {
     quote: "Choosing Vevra Packaging was a game-changer for our bottom line. They tailored solutions that slashed our packaging costs, delivering results without the need for extra investment. Exceptional service!",
     name: "Mahesh Kamble",
-    org: "Customer",
+    org: "PARTNER",
   },
   {
     quote: "Vevra Packaging's cost-saving strategies transformed our packaging operations. Their expertise and dedication to efficiency are unmatched.",
